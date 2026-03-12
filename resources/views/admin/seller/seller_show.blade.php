@@ -1,3 +1,247 @@
+    <!-- Static Info Modal -->
+    <div class="modal fade" id="staticInfoModal" tabindex="-1" aria-labelledby="staticInfoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticInfoModalLabel">Instructor Static Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center mb-4 pb-3 border-bottom">
+                            @if ($user->image)
+                                <img src="{{ asset($user->image) }}" alt="thumb" class="img-fluid rounded-circle mb-3" style="max-width: 120px;">
+                            @else
+                                <img src="{{ asset($general_setting->default_avatar) }}" alt="thumb" class="img-fluid rounded-circle mb-3" style="max-width: 120px;">
+                            @endif
+                            <h5>{{ html_decode($user->name) }}</h5>
+                            <p class="text-muted mb-3">{{ html_decode($user->designation) }}</p>
+                            <div class="crancy__item-form--group mg-top-form-20">
+                                <label class="crancy__item-label">Status</label>
+                                <p class="mt-2">{{ $user->status == 'enable' ? 'Enabled' : 'Disabled' }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <h6 class="fw-bold pb-2 mb-3" style="border-bottom: 2px solid #f0f0f0;">Contact Information</h6>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Email</label>
+                                        <p class="mt-2">{{ html_decode($user->email) }}</p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Phone</label>
+                                        <p class="mt-2">{{ html_decode($user->phone) }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Address</label>
+                                        <p class="mt-2">{{ html_decode($user->address) }}</p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Gender</label>
+                                        <p class="mt-2">{{ html_decode($user->gender) }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4 mt-2">
+                                    <h6 class="fw-bold pb-2 mb-3" style="border-bottom: 2px solid #f0f0f0;">Education Information</h6>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">School Name</label>
+                                        <p class="mt-2">{{ html_decode($user->school_name) }}</p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">College Name</label>
+                                        <p class="mt-2">{{ html_decode($user->college_name) }}</p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Education Qualification</label>
+                                        <p class="mt-2">{{ html_decode($user->education_qualification) }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Current University Semester</label>
+                                        <p class="mt-2">{{ html_decode($user->current_university_semester) }}</p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">O Level Results</label>
+                                        <p class="mt-2">{{ html_decode($user->o_level_results) }}</p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">A Level Results</label>
+                                        <p class="mt-2">{{ html_decode($user->a_level_results) }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4 mt-2">
+                                    <h6 class="fw-bold pb-2 mb-3" style="border-bottom: 2px solid #f0f0f0;">Bio & Profile</h6>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Experience</label>
+                                        <p class="mt-2">{{ html_decode($user->instructor_experience) }}</p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Designation</label>
+                                        <p class="mt-2">{{ html_decode($user->designation) }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Teaching Experience</label>
+                                        <p class="mt-2">{{ html_decode($user->teaching_experience) }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Short Bio</label>
+                                        <p class="mt-2">{{ html_decode($user->about_me) }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4 mt-2">
+                                    <h6 class="fw-bold pb-2 mb-3" style="border-bottom: 2px solid #f0f0f0;">Social Media</h6>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Facebook</label>
+                                        <p class="mt-2">
+                                            @if($user->facebook)
+                                                <a href="{{ $user->facebook }}" target="_blank">{{ $user->facebook }}</a>
+                                            @else
+                                                N/A
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Linkedin</label>
+                                        <p class="mt-2">
+                                            @if($user->linkedin)
+                                                <a href="{{ $user->linkedin }}" target="_blank">{{ $user->linkedin }}</a>
+                                            @else
+                                                N/A
+                                            @endif
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Twitter</label>
+                                        <p class="mt-2">
+                                            @if($user->twitter)
+                                                <a href="{{ $user->twitter }}" target="_blank">{{ $user->twitter }}</a>
+                                            @else
+                                                N/A
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Instagram</label>
+                                        <p class="mt-2">
+                                            @if($user->instagram)
+                                                <a href="{{ $user->instagram }}" target="_blank">{{ $user->instagram }}</a>
+                                            @else
+                                                N/A
+                                            @endif
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4 mt-2">
+                                    <h6 class="fw-bold pb-2 mb-3" style="border-bottom: 2px solid #f0f0f0;">Private & Payment Information</h6>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Guardian Phone</label>
+                                        <p class="mt-2">{{ html_decode($user->guardian_phone) }}</p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Date of Birth</label>
+                                        <p class="mt-2">{{ $user->dob }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Bank Account Number</label>
+                                        <p class="mt-2">{{ html_decode($user->bank_account_number) }}</p>
+                                    </div>
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Bkash Number</label>
+                                        <p class="mt-2">{{ html_decode($user->bkash_number) }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Personal Statement</label>
+                                        <p class="mt-2">{{ html_decode($user->personal_statement) }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4 mt-2">
+                                    <h6 class="fw-bold pb-2 mb-3" style="border-bottom: 2px solid #f0f0f0;">Experience & Achievements</h6>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Educational Achievements</label>
+                                        <p class="mt-2">{{ html_decode($user->educational_achievements) }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Notable Student Outcome</label>
+                                        <p class="mt-2">{{ html_decode($user->notable_student_outcome) }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Expected Commitment</label>
+                                        <p class="mt-2">{{ html_decode($user->expected_commitment) }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4 mt-2">
+                                    <h6 class="fw-bold pb-2 mb-3" style="border-bottom: 2px solid #f0f0f0;">Documents</h6>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">Passport Photo</label>
+                                        <div class="mt-2">
+                                            @if ($user->passport_photo)
+                                                <img src="{{ asset($user->passport_photo) }}" alt="Passport Photo" class="img-fluid" style="max-width: 100px;">
+                                            @else
+                                                N/A
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="crancy__item-form--group mg-top-form-20">
+                                        <label class="crancy__item-label">NID Photo</label>
+                                        <div class="mt-2">
+                                            @if ($user->nid_photo)
+                                                <img src="{{ asset($user->nid_photo) }}" alt="NID Photo" class="img-fluid" style="max-width: 100px;">
+                                            @else
+                                                N/A
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer delet_modal_form">
+                    <button type="button" class="crancy-btn" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @extends('admin.master_layout')
 @section('title')
     <title>{{ __('translate.Seller Details') }}</title>
@@ -27,6 +271,43 @@
                                     <div class="crancy-ecom-card__icon">
                                         <h4 class="crancy-ecom-card__title">{{ __('translate.Net Earnings') }} </h4>
                                     </div>
+                                        <!-- Static Info Modal -->
+                                        <div class="modal fade" id="staticInfoModal" tabindex="-1" aria-labelledby="staticInfoModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticInfoModalLabel">{{ __('translate.Instructor Static Information') }}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-md-4 text-center">
+                                                                @if ($user->image)
+                                                                    <img src="{{ asset($user->image) }}" alt="thumb" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                                                                @else
+                                                                    <img src="{{ asset($general_setting->default_avatar) }}" alt="thumb" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                                                                @endif
+                                                                <h4>{{ html_decode($user->name) }}</h4>
+                                                                <p>{{ html_decode($user->designation) }}</p>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <ul class="list-group list-group-flush">
+                                                                    <li class="list-group-item"><strong>{{ __('translate.Email') }}:</strong> {{ html_decode($user->email) }}</li>
+                                                                    <li class="list-group-item"><strong>{{ __('translate.Phone') }}:</strong> {{ html_decode($user->phone) }}</li>
+                                                                    <li class="list-group-item"><strong>{{ __('translate.Address') }}:</strong> {{ html_decode($user->address) }}</li>
+                                                                    <li class="list-group-item"><strong>{{ __('translate.Gender') }}:</strong> {{ html_decode($user->gender) }}</li>
+                                                                    <li class="list-group-item"><strong>{{ __('translate.Status') }}:</strong> {{ $user->status == 'enable' ? __('translate.Enabled') : __('translate.Disabled') }}</li>
+                                                                    <li class="list-group-item"><strong>{{ __('translate.Featured Instructor') }}:</strong> {{ $user->is_top_seller == 'enable' ? __('translate.Yes') : __('translate.No') }}</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('translate.Close') }}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                 </div>
                                 <div class="crancy-ecom-card__content">
@@ -42,7 +323,7 @@
                 </div>
 
 
-                <div class="col-xxl-3 col-md-6 col-12 mg-top-30">
+                {{-- <div class="col-xxl-3 col-md-6 col-12 mg-top-30">
                     <div class="crancy-ecom-card crancy-ecom-card__v2">
                         <div class="flex-main">
                             <span>
@@ -65,7 +346,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
                 <div class="col-xxl-3 col-md-6 col-12 mg-top-30">
@@ -94,7 +375,7 @@
                 </div>
 
 
-                <div class="col-xxl-3 col-md-6 col-12 mg-top-30">
+                {{-- <div class="col-xxl-3 col-md-6 col-12 mg-top-30">
                     <div class="crancy-ecom-card crancy-ecom-card__v2">
                         <div class="flex-main">
                             <span>
@@ -117,7 +398,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 
@@ -195,11 +476,12 @@
                             <div class="overview-profile-inner">
 
                                 @if ($user->is_seller == 1)
-                                    <a target="_blank" href="{{ route('instructors', $user->username) }}" class="crancy-btn crancy-full-width mg-top-20"> <i class="fas fa-eye    "></i> {{ __('translate.Go To Public Profile') }}</a>
+                                    <a target="_blank" href="{{ route('instructor.profile', $user->username) }}" class="crancy-btn crancy-full-width mg-top-20"> <i class="fas fa-eye    "></i> Public Profile</a>
+                                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#staticInfoModal" class="crancy-btn crancy-full-width mg-top-20 btn-primary"> <i class="fas fa-info-circle"></i> View Information</a>
                                 @endif
 
 
-                                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#editModal" class="crancy-btn crancy-full-width mg-top-20 user_edit_btn"> <i class="fas fa-edit    "></i> {{ __('translate.Edit Profile') }}</a>
+                                {{-- <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#editModal" class="crancy-btn crancy-full-width mg-top-20 user_edit_btn"> <i class="fas fa-edit    "></i> {{ __('translate.Edit Profile') }}</a> --}}
 
 
 

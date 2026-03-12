@@ -9,471 +9,529 @@
 @section('front-content')
 
 
-<div class="td_hero_full_screen_wrapper">
-  <!-- Start Hero Section -->
-  <section class="td_hero td_style_2 td_center text-center td_hobble uta-bg-color">
-    <div class="container">
-      <div class="td_hero_text wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.25s">
-        <h1 class="td_hero_title td_fs_64 td_mb_30">
-            {!! strip_tags(clean(getTranslatedValue($home1_hero_section, 'heading')),'<span>') !!}
-        </h1>
-        <p class="td_hero_subtitle td_fs_18  td_mb_40">{{ getTranslatedValue($home1_hero_section, 'description') }}</p>
-        <div class="td_btns_group">
-          <a href="{{ route('courses') }}" class="td_btn td_style_1 td_radius_30 td_medium td_with_shadow">
-            <span class="td_btn_in td_white_color td_accent_bg">
-              <span>{{ __('translate.Explore Course') }}</span>
-              <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.1575 4.34302L3.84375 15.6567" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                  d="M15.157 11.4142C15.157 11.4142 16.0887 5.2748 15.157 4.34311C14.2253 3.41142 8.08594 4.34314 8.08594 4.34314"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-          </a>
-          <div class="td_avatars_wrap">
-            <div class="td_avatars">
-              <img src="{{ asset(getImage($home1_hero_section, 'student_image')) }}" alt="thumb">
+<section class="ee_hero mt-5">
+  <div class="container">
+    <div class="row align-items-center ee_hero_row">
+      <div class="col-lg-7">
+        <div class="ee_hero_left">
+          {{-- <div class="ee_hero_kicker">
+            <span class="ee_hero_kicker_dot"></span>
+            IGCSE • O Level • A Level
+          </div> --}}
+          <h1 class="ee_hero_title">Boost your grades with <span class="ee_hero_title_accent">Exam Essentials</span>.</h1>
+          <p class="ee_hero_subtitle">Learn with thousands of students worldwide by exploring lessons, tackling practice questions and getting AI-powered support.</p>
+          <div class="ee_hero_highlights">
+            <div class="ee_hero_highlight">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>High-impact crash courses</span>
             </div>
-            <div>
-              <h3 class="mb-0 td_fs_20 td_semibold">{{ getTranslatedValue($home1_hero_section, 'total_student') }}</h3>
-              <p class="mb-0 td_fs_18">{{ getTranslatedValue($home1_hero_section, 'total_student_title') }}</p>
+            <div class="ee_hero_highlight">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Practice + progress tracking</span>
+            </div>
+            <div class="ee_hero_highlight">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>AI-powered support</span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- <div class="td_hero_img_box_left">
-      <div class="td_hero_img_1 position-absolute wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.25s">
-        <img src="{{ asset(getImage($home1_hero_section, 'left_side_image_one')) }}" alt="">
-      </div>
-      <div class="td_hero_img_2 position-absolute wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.25s">
-        <img src="{{ asset(getImage($home1_hero_section, 'left_side_image_two')) }}" alt="">
-      </div>
-      <div class="td_hero_img_3 position-absolute wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.25s">
-        <img src="{{ asset(getImage($home1_hero_section, 'left_side_image_three')) }}" alt="">
-      </div>
-      <span class="td_hero_shape_1 position-absolute td_hover_layer_3">
-        <svg width="329" height="316" viewBox="0 0 329 316" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g style="mix-blend-mode:luminosity" opacity="0.3">
-            <circle cx="171" cy="157.998" r="157" stroke="#ffffff" stroke-width="2" stroke-dasharray="20 20" />
-          </g>
-          <g style="mix-blend-mode:luminosity" opacity="0.3">
-            <circle cx="158" cy="157.998" r="157" stroke="#ffffff" stroke-width="2" stroke-dasharray="20 20" />
-          </g>
-        </svg>
-      </span>
-      <span class="td_hero_shape_2 position-absolute td_hover_layer_3">
-        @include('svg.hero_light')
+      
 
-      </span>
-    </div>
-    <div class="td_hero_img_box_right">
-      <div class="td_hero_img_4 position-absolute wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.25s">
-        <img src="{{ asset(getImage($home1_hero_section, 'right_side_image_one')) }}" alt="">
-      </div>
-      <div class="td_hero_img_5 position-absolute wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.25s">
-        <img src="{{ asset(getImage($home1_hero_section, 'right_side_image_two')) }}" alt="">
-      </div>
-      <div class="td_hero_img_6 position-absolute wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.25s">
-        <img src="{{ asset(getImage($home1_hero_section, 'right_side_image_three')) }}" alt="">
-      </div>
-      <span class="td_hero_shape_3 position-absolute td_hover_layer_5">
-        <svg width="329" height="316" viewBox="0 0 329 316" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g opacity="0.3">
-            <circle cx="171" cy="157.998" r="157" stroke="#ffffff" stroke-width="2" stroke-dasharray="20 20"></circle>
-          </g>
-          <g opacity="0.3">
-            <circle cx="158" cy="157.998" r="157" stroke="#ffffff" stroke-width="2" stroke-dasharray="20 20"></circle>
-          </g>
-        </svg>
-      </span>
-      <div class="td_hero_shape_4 position-absolute"></div>
-    </div> -->
-    <!-- <span class="td_hero_shape_5 position-absolute td_hover_layer_5">
-        @include('svg.hero_light2')
-    </span>
-
-    <span class="td_hero_shape_6 position-absolute">
-        @include('svg.hero_light3')
-    </span> -->
-  </section>
-
-  <!-- End Hero Section -->
+<div class="ee_hero_art">
 
 
-  <!-- Start Category Section -->
-  <!-- <section>
-    <div class="td_height_100 td_height_lg_75"></div>
-    <div class="container">
-      <div class="td_section_heading td_style_1 td_type_1 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-        <div class="td_section_heading_left">
-          <p class="td_section_subtitle_up td_fs_18 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color">
-            <i></i>
-            {{ __('translate.Browse Categories') }}
-            <i></i>
-          </p>
-          <h2 class="td_section_title td_fs_48 mb-0">{{ __('translate.Explore Online Courses') }}</h2>
-        </div>
-        <div class="td_section_heading_right">
-          <p class="td_section_subtitle td_fs_18 td_mb_16 ">
-           {{ __('translate. Far far away, behind the word mountains, far from the Consonantia, there live the blind texts. Separated') }}</p>
-          <a href="{{ route('courses') }}" class="td_btn td_style_2 td_heading_color td_medium td_mb_10">
-            {{ __('translate.See all Courses') }}
-            <i>
-              @include('svg.explore_more_category')
-            </i>
-          </a>
-        </div>
-      </div>
 
-      <div class="td_height_50 td_height_lg_50"></div>
-      <div class="row td_gap_y_24">
-        @foreach ($categories as $category)
-        <div class="col-xl-3 col-lg-4 col-sm-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.25s">
-          <div class="td_iconbox td_style_2 text-center td_hobble">
-            <div class="td_iconbox_in td_hover_layer_4">
-              <div class="td_hover_layer_3">
-                <div class="td_iconbox_icon td_mb_16">
-                  <img src="{{ asset($category->icon) }}" alt="">
-                </div>
-                <h3 class="td_iconbox_title td_fs_20 td_semibold td_opacity_8 td_mb_16">{{ $category->name }}</h3>
-                <p class="td_iconbox_subtitle mb-0">{{ __('translate.Courses') }} <span>({{ $category->total_course }})</span></p>
-              </div>
-            </div>
-            <a href="{{ route('courses', ['category' => $category->slug]) }}" class="td_iconbox_link"></a>
-          </div>
-        </div>
-        @endforeach
-      </div>
-    </div>
-    <div class="td_height_100 td_height_lg_50"></div>
-  </section> -->
-  <!-- End Category Section -->
+    @if(getImage($home1_hero_section, 'student_image'))
+        <img class="ee_hero_art_main"
+             src="{{ asset(getImage($home1_hero_section, 'left_side_image_one')) }}"
+             alt="Student learning">
+    @endif
 
+    @if(getImage($home1_hero_section, 'right_side_image_one'))
+        <img class="ee_hero_art_secondary"
+             src="{{ asset(getImage($home1_hero_section, 'right_side_image_one')) }}"
+             alt="Study session">
+    @endif
 
-  <!-- Start Rate Section -->
-  <section class="td_accent_bg td_rate_section wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-    <!-- <div class="td_rate_heading td_fs_20 td_semibold td_white_color">
-      {{ __('translate.Excellent Rated On Trustpilot') }}
-      <div class="td_rating_wrap">
-        <div class="td_rating" data-rating="5">
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <div class="td_rating_percentage">
-            <i class="fa-solid fa-star fa-fw"></i>
-            <i class="fa-solid fa-star fa-fw"></i>
-            <i class="fa-solid fa-star fa-fw"></i>
-            <i class="fa-solid fa-star fa-fw"></i>
-            <i class="fa-solid fa-star fa-fw"></i>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <div class="td_rate_feature_list_wrap">
-      <div class="td_moving_box_wrap">
-        <div class="td_moving_box_in">
-          <div class="td_moving_box">
-            <ul class="td_rate_feature_list td_mp_0">
-              <li>
-                <div class="td_rate_feature_icon td_center td_white_bg">
-                  <img src="{{ asset(getImage($home1_key_feature, 'item_one_image')) }}" alt="">
-                </div>
-                <div class="td_rate_feature_right">
-                  <h3 class="td_fs_24 td_semibold td_white_color td_mb_4">{{ getTranslatedValue($home1_key_feature, 'item_one_title') }}</h3>
-                  <p class="mb-0 td_white_color td_opacity_7">{{ getTranslatedValue($home1_key_feature, 'item_one_description') }}</p>
-                </div>
-              </li>
-
-              <li>
-                <div class="td_rate_feature_icon td_center td_white_bg">
-                  <img src="{{ asset(getImage($home1_key_feature, 'item_two_image')) }}" alt="">
-                </div>
-                <div class="td_rate_feature_right">
-                  <h3 class="td_fs_24 td_semibold td_white_color td_mb_4">{{ getTranslatedValue($home1_key_feature, 'item_two_title') }}</h3>
-                  <p class="mb-0 td_white_color td_opacity_7">{{ getTranslatedValue($home1_key_feature, 'item_two_description') }}</p>
-                </div>
-              </li>
-
-              <li>
-                <div class="td_rate_feature_icon td_center td_white_bg">
-                  <img src="{{ asset(getImage($home1_key_feature, 'item_three_image')) }}" alt="">
-                </div>
-                <div class="td_rate_feature_right">
-                  <h3 class="td_fs_24 td_semibold td_white_color td_mb_4">{{ getTranslatedValue($home1_key_feature, 'item_three_title') }}</h3>
-                  <p class="mb-0 td_white_color td_opacity_7">{{ getTranslatedValue($home1_key_feature, 'item_three_description') }}</p>
-                </div>
-              </li>
-
-              <li>
-                <div class="td_rate_feature_icon td_center td_white_bg">
-                  <img src="{{ asset(getImage($home1_key_feature, 'item_four_image')) }}" alt="">
-                </div>
-                <div class="td_rate_feature_right">
-                  <h3 class="td_fs_24 td_semibold td_white_color td_mb_4">{{ getTranslatedValue($home1_key_feature, 'item_four_title') }}</h3>
-                  <p class="mb-0 td_white_color td_opacity_7">{{ getTranslatedValue($home1_key_feature, 'item_four_description') }}</p>
-                </div>
-              </li>
-
-            </ul>
-          </div>
-          <div class="td_moving_box">
-            <ul class="td_rate_feature_list td_mp_0">
-                <li>
-                    <div class="td_rate_feature_icon td_center td_white_bg">
-                      <img src="{{ asset(getImage($home1_key_feature, 'item_one_image')) }}" alt="">
-                    </div>
-                    <div class="td_rate_feature_right">
-                      <h3 class="td_fs_24 td_semibold td_white_color td_mb_4">{{ getTranslatedValue($home1_key_feature, 'item_one_title') }}</h3>
-                      <p class="mb-0 td_white_color td_opacity_7">{{ getTranslatedValue($home1_key_feature, 'item_one_description') }}</p>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div class="td_rate_feature_icon td_center td_white_bg">
-                      <img src="{{ asset(getImage($home1_key_feature, 'item_two_image')) }}" alt="">
-                    </div>
-                    <div class="td_rate_feature_right">
-                      <h3 class="td_fs_24 td_semibold td_white_color td_mb_4">{{ getTranslatedValue($home1_key_feature, 'item_two_title') }}</h3>
-                      <p class="mb-0 td_white_color td_opacity_7">{{ getTranslatedValue($home1_key_feature, 'item_two_description') }}</p>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div class="td_rate_feature_icon td_center td_white_bg">
-                      <img src="{{ asset(getImage($home1_key_feature, 'item_three_image')) }}" alt="">
-                    </div>
-                    <div class="td_rate_feature_right">
-                      <h3 class="td_fs_24 td_semibold td_white_color td_mb_4">{{ getTranslatedValue($home1_key_feature, 'item_three_title') }}</h3>
-                      <p class="mb-0 td_white_color td_opacity_7">{{ getTranslatedValue($home1_key_feature, 'item_three_description') }}</p>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div class="td_rate_feature_icon td_center td_white_bg">
-                      <img src="{{ asset(getImage($home1_key_feature, 'item_four_image')) }}" alt="">
-                    </div>
-                    <div class="td_rate_feature_right">
-                      <h3 class="td_fs_24 td_semibold td_white_color td_mb_4">{{ getTranslatedValue($home1_key_feature, 'item_four_title') }}</h3>
-                      <p class="mb-0 td_white_color td_opacity_7">{{ getTranslatedValue($home1_key_feature, 'item_four_description') }}</p>
-                    </div>
-                  </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
-  <!-- End Rate Section -->
+        </div>
+      </div>
 
+      <div class="col-lg-5">
+        <div class="ee_hero_card">
+          <div class="ee_hero_card_head">
+            <div class="ee_hero_card_badge">Start Here</div>
+            <h2 class="ee_hero_card_title">Start learning today by signing up!</h2>
+            <p class="ee_hero_card_subtitle">Pick your exam session and we’ll guide you step-by-step.</p>
+          </div>
 
-  <!-- Start About Section -->
-  <section>
-    <div class="td_height_100 td_height_lg_75"></div>
-    <div class="container">
-      <div class="row td_gap_y_40">
-        <div class="col-lg-6">
-          <div class="td_image_box td_style_2">
-            <div class="td_image_box_img_1 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.25s">
-              <img src="{{ asset(getImage($home1_about_us, 'image_one')) }}" alt="">
-            </div>
-            <div class="td_image_box_img_2 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.25s">
-              <img src="{{ asset(getImage($home1_about_us, 'image_two')) }}" alt="" class="td_image_box_img_2_thumb">
+          <div class="ee_hero_card_options">
+            <a class="ee_hero_card_option" href="{{ route('register.student') }}">
+              <span class="ee_hero_card_option_text">I'm an A Level May 2026 Candidate</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
 
-              @include('svg.home1_about_shadow')
-            </div>
-            <div class="td_award_box wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.25s">
-              <div class="td_award_box_icon td_center">
-                @include('svg.home1_about_light')
-              </div>
-              <div class="td_award_box_in">
-                <p class="td_fs_24 td_semibold td_white_color td_center td_accent_bg">{{ getTranslatedValue($home1_about_us, 'experience_year') }}+</p>
-                <h3 class="td_fs_14 td_semibold mb-0">{{ getTranslatedValue($home1_about_us, 'experience_title') }}</h3>
-              </div>
-            </div>
-            <div class="td_image_box_shape_1"></div>
-            <div class="td_image_box_shape_2">
-              <a href="https://www.youtube.com/embed/{{ getTranslatedValue($home1_about_us, 'youtube_video_id') }}"
-                class="td_player_btn_wrap td_video_open td_medium td_heading_color">
-                <span class="td_player_btn td_center">
-                  <span></span>
-                </span>
-              </a>
-            </div>
-            <div class="td_image_box_shape_3 td_accent_color">
-                @include('svg.home1_about_shadow2')
-            </div>
+            <a class="ee_hero_card_option" href="{{ route('register.instructor') }}">
+              <span class="ee_hero_card_option_text">I'm an O Level May 2026 Candidate</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <a class="ee_hero_card_option" href="{{ route('register.student') }}">
+              <span class="ee_hero_card_option_text">I'm an A Level Oct 2026 Candidate</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <a class="ee_hero_card_option" href="{{ route('contact-us') }}">
+              <span class="ee_hero_card_option_text">I'm an O Level Oct 2026 Candidate</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <div class="ee_hero_card_footer">
+            <span>Already have an account?</span>
+            <a href="{{ route('student.login') }}">Log in</a>
           </div>
         </div>
-        <div class="col-lg-6 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.35s">
-          <div class="td_section_heading td_style_1 td_mb_40">
-            <p class="td_section_subtitle_up td_fs_18 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color">
-              <i></i>{{ getTranslatedValue($home1_about_us, 'short_title') }}<i></i>
-            </p>
-            <h2 class="td_section_title td_fs_48 td_mb_24">{{ getTranslatedValue($home1_about_us, 'title') }} </h2>
-            <p class="td_section_subtitle td_fs_18 mb-0">{{ getTranslatedValue($home1_about_us, 'description') }}</p>
-          </div>
-          <div class="td_mb_40 position-relative">
-            <ul class="td_list td_style_2 td_fs_24 td_medium td_heading_color td_mp_0">
-              <li>
-                @include('svg.home1_about_list_item')
-                {{ getTranslatedValue($home1_about_us, 'item_one') }}
-              </li>
-              <li>
-                @include('svg.home1_about_list_item')
-                {{ getTranslatedValue($home1_about_us, 'item_two') }}
-              </li>
-              <li>
-                @include('svg.home1_about_list_item')
-                {{ getTranslatedValue($home1_about_us, 'item_three') }}
-              </li>
-              <li>
-                @include('svg.home1_about_list_item')
-                {{ getTranslatedValue($home1_about_us, 'item_four') }}
-              </li>
-            </ul>
-            <div class="td_list_2_shape">
-                @include('svg.home1_about_right_shadow')
+      </div>
+    </div>
+  </div>
+</section>
 
-            </div>
+<section class="ee_metrics">
+  <div class="container">
+    <div class="ee_metrics_head text-center">
+      <h2 class="ee_metrics_title">For Every Student, Subject &amp; Exam.</h2>
+      <p class="ee_metrics_subtitle">Join 60,000+ students in 100+ countries mastering IGCSE, O &amp; A Levels with Exam Essentials.</p>
+    </div>
+    <div class="row g-4 justify-content-center ee_metrics_grid">
+      <div class="col-6 col-md-3">
+        <div class="ee_metric_card ee_metric_card--blue">
+          <div class="ee_metric_value">60K+</div>
+          <div class="ee_metric_label">Students</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="ee_metric_card ee_metric_card--orange">
+          <div class="ee_metric_value">101</div>
+          <div class="ee_metric_label">Countries Reached</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="ee_metric_card ee_metric_card--ink">
+          <div class="ee_metric_value">25+</div>
+          <div class="ee_metric_label">Years of Experience</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="ee_metric_card ee_metric_card--blue-dark">
+          <div class="ee_metric_value">92%</div>
+          <div class="ee_metric_label">Success Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ee_reviews">
+  <div class="container">
+    <div class="ee_reviews_head text-center">
+      <h2 class="ee_reviews_title">Students love Exam Essentials.</h2>
+      <p class="ee_reviews_subtitle">Real messages from real students across IGCSE, O Level &amp; A Level.</p>
+    </div>
+
+    <div class="ee_reviews_masonry">
+      <article class="ee_review_card ee_review_card--warm">
+        <div class="ee_review_icon">“</div>
+        <p class="ee_review_text">This platform is the only way to turn a U into an A*.</p>
+        <div class="ee_review_footer">
+          <span class="ee_review_avatar">RI</span>
+          <span class="ee_review_name">R I</span>
+        </div>
+      </article>
+
+      <article class="ee_review_card ee_review_card--soft">
+        <div class="ee_review_icon">“</div>
+        <p class="ee_review_text">Sir, I feel like I owe you an appreciation message for the immeasurable help you gave us through your Exam Essentials Chemistry A Level series. I was at 0 in Chemistry in mid-February when I decided to start learning properly.</p>
+        <p class="ee_review_text">In only 1.5 months, I completed Physical Chemistry and I’m halfway through Organic Chemistry. Your way of teaching is amazing. Thank you.</p>
+        <div class="ee_review_footer">
+          <span class="ee_review_avatar ee_review_avatar--blue">M</span>
+          <span class="ee_review_name">Miron</span>
+        </div>
+      </article>
+
+      <article class="ee_review_card ee_review_card--soft">
+        <div class="ee_review_icon">“</div>
+        <p class="ee_review_text">From Ds to an A*! I finally understand Organic Chemistry!</p>
+        <div class="ee_review_footer">
+          <span class="ee_review_avatar ee_review_avatar--blue-dark">AK</span>
+          <span class="ee_review_name">Ali K</span>
+        </div>
+      </article>
+
+      <article class="ee_review_card ee_review_card--mint">
+        <div class="ee_review_icon">“</div>
+        <p class="ee_review_text">Hello sir, I just wanted to thank you and show my immense gratitude for your efforts and all the resources that helped me achieve an A in my AS results. The sessions and recordings were incredibly helpful. I never thought I’d get an A in Economics when I started—I expected a B or C at best. All credit goes to you.</p>
+        <div class="ee_review_footer">
+          <span class="ee_review_avatar ee_review_avatar--ink">AS</span>
+          <span class="ee_review_name">Abdullah Shaikh</span>
+        </div>
+      </article>
+
+      <article class="ee_review_card ee_review_card--pink">
+        <div class="ee_review_icon">“</div>
+        <p class="ee_review_text">You guys helped me with my academic comeback! It's insane. I'm too happy!</p>
+        <div class="ee_review_footer">
+          <span class="ee_review_avatar ee_review_avatar--orange">JK</span>
+          <span class="ee_review_name">J K</span>
+        </div>
+      </article>
+
+      <article class="ee_review_card ee_review_card--soft">
+        <div class="ee_review_icon">“</div>
+        <p class="ee_review_text">The team is doing a great job making A Levels feel manageable. I owe my A to you!</p>
+        <div class="ee_review_footer">
+          <span class="ee_review_avatar ee_review_avatar--blue">RA</span>
+          <span class="ee_review_name">R A</span>
+        </div>
+      </article>
+
+      <article class="ee_review_card ee_review_card--blue">
+        <div class="ee_review_icon">“</div>
+        <p class="ee_review_text">Love the platform! Thank you for my A. Would 100% recommend.</p>
+        <div class="ee_review_footer">
+          <span class="ee_review_avatar ee_review_avatar--blue-dark">M</span>
+          <span class="ee_review_name">Meesum</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="ee_why">
+  <div class="container">
+    <div class="ee_why_head text-center">
+      <h2 class="ee_why_title">Why Exam Essentials works</h2>
+      <p class="ee_why_subtitle">A clear path, trusted material, and tools that help you improve faster.</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="ee_why_item">
+          <div class="ee_why_icon ee_why_icon--orange">
+            <svg viewBox="0 0 64 64" width="44" height="44" aria-hidden="true" focusable="false">
+              <path d="M12 16a6 6 0 0 1 6-6h20a6 6 0 0 1 6 6v32a6 6 0 0 1-6 6H18a6 6 0 0 1-6-6V16Z" fill="color-mix(in srgb,var(--uta-orange) 18%,var(--uta-white))"/>
+              <path d="M22 22h18M22 30h18M22 38h12" stroke="var(--uta-orange)" stroke-width="3" stroke-linecap="round"/>
+              <path d="M44 24l8-4v28l-8-4" fill="color-mix(in srgb,var(--uta-blue) 16%,var(--uta-white))" stroke="var(--uta-blue-dark)" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
           </div>
-          <a href="{{ route('about-us') }}" class="td_btn td_style_1 td_radius_30 td_medium td_with_shadow">
-            <span class="td_btn_in td_white_color td_accent_bg">
-              <span>{{ __('translate.More About') }}</span>
-              <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.1575 4.34302L3.84375 15.6567" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" stroke-linejoin="round"></path>
-                <path
-                  d="M15.157 11.4142C15.157 11.4142 16.0887 5.2748 15.157 4.34311C14.2253 3.41142 8.08594 4.34314 8.08594 4.34314"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </span>
+          <h3 class="ee_why_item_title">Personalized learning</h3>
+          <p class="ee_why_item_text">Practice at your own pace, fill gaps in understanding, and keep moving forward with a clear plan.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="ee_why_item">
+          <div class="ee_why_icon ee_why_icon--blue">
+            <svg viewBox="0 0 64 64" width="44" height="44" aria-hidden="true" focusable="false">
+              <path d="M32 10 12 18v14c0 14 8 22 20 26 12-4 20-12 20-26V18L32 10Z" fill="color-mix(in srgb,var(--uta-blue) 18%,var(--uta-white))" stroke="var(--uta-blue-dark)" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M24 34l6 6 14-16" stroke="var(--uta-blue-dark)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="ee_why_item_title">Trusted content</h3>
+          <p class="ee_why_item_text">Lessons, notes, and practice questions built around the exam spec—so you study what matters most.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="ee_why_item">
+          <div class="ee_why_icon ee_why_icon--ink">
+            <svg viewBox="0 0 64 64" width="44" height="44" aria-hidden="true" focusable="false">
+              <path d="M18 16a6 6 0 0 1 6-6h16a6 6 0 0 1 6 6v34a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4V16Z" fill="color-mix(in srgb,var(--uta-ink) 10%,var(--uta-white))" stroke="var(--uta-ink)" stroke-width="2"/>
+              <path d="M24 24h16M24 32h16" stroke="var(--uta-ink)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+              <path d="M26 46h12" stroke="var(--uta-orange)" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="44" cy="46" r="4" fill="color-mix(in srgb,var(--uta-orange) 28%,var(--uta-white))" stroke="var(--uta-orange)" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="ee_why_item_title">Tools to boost results</h3>
+          <p class="ee_why_item_text">Track progress, review weak topics, and stay consistent with study tools designed for exams.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ee_learn">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <div class="ee_learn_kicker">Learners and students</div>
+        <h2 class="ee_learn_title">You can learn anything.</h2>
+        <p class="ee_learn_text">Build a deep, solid understanding in Maths, Science, and more with structured lessons and targeted practice.</p>
+        <a class="ee_learn_btn" href="{{ route('courses') }}">
+          <span>Learners, start here</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="col-lg-7">
+        <div class="ee_learn_art" aria-hidden="true">
+          <svg viewBox="0 0 760 360" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="ee_learn_bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="color-mix(in srgb,var(--uta-blue) 16%,var(--uta-white))"/>
+                <stop offset="1" stop-color="color-mix(in srgb,var(--uta-orange) 12%,var(--uta-white))"/>
+              </linearGradient>
+            </defs>
+            <path d="M540 24c90 20 150 80 176 156 26 76 10 164-58 220-68 56-186 78-294 44-108-34-206-124-196-224 10-100 128-216 372-196Z" fill="url(#ee_learn_bg)" opacity=".9"/>
+            <path d="M594 60l80-28M658 22l-8 78" stroke="var(--uta-ink)" stroke-width="6" stroke-linecap="round" opacity=".2"/>
+            <path d="M612 86c40 10 70 30 92 56" stroke="var(--uta-blue)" stroke-width="6" stroke-linecap="round" opacity=".35"/>
+            <path d="M540 252l-100 54c-14 8-24 10-40 10H240c-20 0-34-14-26-30l46-90c6-12 18-20 34-22l170-24c14-2 24 0 34 6l42 26c16 10 16 32 0 44Z" fill="color-mix(in srgb,var(--uta-blue) 42%,var(--uta-white))"/>
+            <path d="M500 262 344 344H242c-24 0-38-18-26-36l46-74c8-12 20-18 36-20l176-18c16-2 28 2 38 12l18 18c12 12 6 30-10 38Z" fill="color-mix(in srgb,var(--uta-blue-dark) 25%,var(--uta-white))"/>
+            <path d="M284 154h260c18 0 32 14 32 32v118c0 18-14 32-32 32H284c-18 0-32-14-32-32V186c0-18 14-32 32-32Z" fill="var(--uta-ink)" opacity=".12"/>
+            <path d="M270 138h288c18 0 32 14 32 32v138c0 18-14 32-32 32H270c-18 0-32-14-32-32V170c0-18 14-32 32-32Z" fill="var(--uta-ink)"/>
+            <path d="M270 162h288c4 0 8 4 8 8v102c0 4-4 8-8 8H270c-4 0-8-4-8-8V170c0-4 4-8 8-8Z" fill="color-mix(in srgb,var(--uta-surface) 85%,var(--uta-white))"/>
+            <path d="M306 206h154" stroke="var(--uta-blue-dark)" stroke-width="10" stroke-linecap="round" opacity=".35"/>
+            <path d="M306 236h210" stroke="var(--uta-blue)" stroke-width="10" stroke-linecap="round" opacity=".35"/>
+            <path d="M306 266h120" stroke="var(--uta-orange)" stroke-width="10" stroke-linecap="round" opacity=".55"/>
+            <circle cx="524" cy="238" r="22" fill="color-mix(in srgb,var(--uta-orange) 22%,var(--uta-white))"/>
+            <path d="M514 238l8 8 16-18" stroke="var(--uta-blue-dark)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M606 280l74 30" stroke="var(--uta-ink)" stroke-width="6" stroke-linecap="round" opacity=".2"/>
+            <path d="M700 274l10 48" stroke="var(--uta-ink)" stroke-width="6" stroke-linecap="round" opacity=".2"/>
+            <path d="M674 322l40-22" stroke="var(--uta-ink)" stroke-width="6" stroke-linecap="round" opacity=".2"/>
+            <path d="M622 296c14 10 20 18 18 26" stroke="var(--uta-blue)" stroke-width="6" stroke-linecap="round" opacity=".25"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ee_video">
+  <div class="container">
+    <div class="ee_video_head text-center">
+      <h2 class="ee_video_title">A* Learning. Anytime, Anywhere.</h2>
+      <p class="ee_video_subtitle">See how Exam Essentials helps you learn faster with clear, exam-focused lessons and practice.</p>
+    </div>
+
+    <div class="ee_video_stage">
+      <div class="ee_video_card">
+        <div class="ee_video_card_head">
+          <h3 class="ee_video_card_title">Everything you need to know about our courses</h3>
+          <span class="ee_video_tag">Watch the 2-minute overview</span>
+        </div>
+        <div class="ee_video_thumb">
+          <img src="{{ asset('frontend/theme_five/assets/images/home-one/offer-video.png') }}" alt="Course overview video">
+          <a class="ee_video_play td_video_open" href="https://www.youtube.com/embed/Wx48y_fOfiY?autoplay=1&amp;mute=1">
+            <i class="fa-solid fa-play"></i>
           </a>
         </div>
       </div>
     </div>
-    <div class="td_height_100 td_height_lg_50"></div>
-  </section>
-  <!-- End About Section -->
+  </div>
+</section>
 
+<section class="ee_subjects">
+  <div class="container">
+    <div class="ee_subjects_head">
+      <div class="ee_subjects_kicker">Browse</div>
+      <h2 class="ee_subjects_title">Popular topics</h2>
+      <p class="ee_subjects_subtitle">Pick a subject and start learning with structured lessons and targeted practice.</p>
+    </div>
 
-  <!-- Start Courses Section -->
-  <section class="td_gray_bg_4">
-    <div class="td_height_100 td_height_lg_75"></div>
-    <div class="container">
-      <div class="td_tabs td_style_1">
-        <div class="td_section_heading td_style_1 td_type_2 td_with_tab_menu wow fadeInUp" data-wow-duration="1s"
-          data-wow-delay="0.2s">
-          <div class="td_section_heading_left">
-            <p class="td_section_subtitle_up td_fs_18 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color">
-              <i></i>
-              {{ __('translate.Latest courses') }}
-              <i></i>
-            </p>
-            <h2 class="td_section_title td_fs_48 mb-0">{{ __('translate.Pick Our Latest Courses') }} <br>{{ __('translate.and Build your Skills') }}</h2>
-          </div>
-          <div class="td_section_heading_right">
-            <ul class="td_tab_links td_style_2 td_mp_0 td_medium td_fs_20 td_heading_color">
-                @foreach ($home_1_filter_categories as $category)
-                <li class="{{ $loop->first ? 'active' : '' }}"><a href="#{{$category->slug}}">{{ $category?->name }}</a></li>
-              @endforeach
-            </ul>
-          </div>
+    <div class="ee_subjects_grid">
+      <a class="ee_subject_card" href="{{ route('courses', ['search' => 'Chemistry']) }}">
+        <span class="ee_subject_icon ee_subject_icon--orange" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="54" height="54">
+            <path d="M10 2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 2v6l5 9a4 4 0 0 1-3.5 6H10.5A4 4 0 0 1 7 17l5-9V2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9.2 14h5.6" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+          </svg>
+        </span>
+        <span class="ee_subject_name">Chemistry</span>
+      </a>
+
+      <a class="ee_subject_card" href="{{ route('courses', ['search' => 'Physics']) }}">
+        <span class="ee_subject_icon ee_subject_icon--blue" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="54" height="54">
+            <path d="M12 3c-4.5 0-8 4-8 9s3.5 9 8 9 8-4 8-9-3.5-9-8-9Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 7v10M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+          </svg>
+        </span>
+        <span class="ee_subject_name">Physics</span>
+      </a>
+
+      <a class="ee_subject_card" href="{{ route('courses', ['search' => 'Biology']) }}">
+        <span class="ee_subject_icon ee_subject_icon--blue-dark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="54" height="54">
+            <path d="M12 21c6-3 9-8 9-13C15 8 12 3 12 3S9 8 3 8c0 5 3 10 9 13Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M12 7v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+          </svg>
+        </span>
+        <span class="ee_subject_name">Biology</span>
+      </a>
+
+      <a class="ee_subject_card" href="{{ route('courses', ['search' => 'Mathematics']) }}">
+        <span class="ee_subject_icon ee_subject_icon--ink" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="54" height="54">
+            <path d="M4 7h16M8 4v6M16 4v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 14h12M10 12v6M14 12v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+          </svg>
+        </span>
+        <span class="ee_subject_name">Mathematics</span>
+      </a>
+
+      <a class="ee_subject_card" href="{{ route('courses', ['search' => 'Computer Science']) }}">
+        <span class="ee_subject_icon ee_subject_icon--blue" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="54" height="54">
+            <path d="M5 6h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+            <path d="M10 10l-2 2 2 2M14 10l2 2-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="ee_subject_name">Computer Science</span>
+      </a>
+
+      <a class="ee_subject_card" href="{{ route('courses', ['search' => 'Economics']) }}">
+        <span class="ee_subject_icon ee_subject_icon--orange" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="54" height="54">
+            <path d="M6 18V9M12 18V6M18 18v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+          </svg>
+        </span>
+        <span class="ee_subject_name">Economics</span>
+      </a>
+
+      <a class="ee_subject_card" href="{{ route('courses', ['search' => 'Accounting']) }}">
+        <span class="ee_subject_icon ee_subject_icon--ink" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="54" height="54">
+            <path d="M7 4h10a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 8h8M9 12h8M9 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+          </svg>
+        </span>
+        <span class="ee_subject_name">Accounting</span>
+      </a>
+
+      <a class="ee_subject_card" href="{{ route('courses', ['search' => 'Business']) }}">
+        <span class="ee_subject_icon ee_subject_icon--blue-dark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="54" height="54">
+            <path d="M9 7V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 7h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+          </svg>
+        </span>
+        <span class="ee_subject_name">Business</span>
+      </a>
+
+      <a class="ee_subject_card" href="{{ route('courses', ['search' => 'English']) }}">
+        <span class="ee_subject_icon ee_subject_icon--blue" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="54" height="54">
+            <path d="M7 4h10a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 9h8M9 13h7M9 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+          </svg>
+        </span>
+        <span class="ee_subject_name">English</span>
+      </a>
+
+      <a class="ee_subject_card" href="{{ route('courses', ['search' => 'Statistics']) }}">
+        <span class="ee_subject_icon ee_subject_icon--orange" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="54" height="54">
+            <path d="M6 18V9M12 18v-5M18 18V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+          </svg>
+        </span>
+        <span class="ee_subject_name">Statistics</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="ee_faq">
+  <div class="container">
+    <div class="row align-items-start g-5">
+      <div class="col-lg-5">
+        <div class="ee_faq_left">
+          <h2 class="ee_faq_title">Got questions?</h2>
+          <p class="ee_faq_text">Find quick answers to common questions. If you’re unsure what plan to choose or need extra support, we’re here to help.</p>
+          <a class="ee_faq_btn" href="{{ route('contact-us') }}">
+            <span>Contact us</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
-        <div class="td_height_50 td_height_lg_50"></div>
-        <div class="td_tab_body">
-            @foreach ($home_1_filter_categories as $category)
-                <div class="td_tab {{ $loop->first ? 'active' : '' }}" id="{{$category->slug}}">
-                    <div class="row td_gap_y_30 td_row_gap_30">
-                        @foreach($category?->courses->take(4) as $course_index => $course)
-                            <div class="col-xl-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-                                <div class="td_card td_style_5 td_type_1">
-                                <div class="td_card_thumb">
-                                    <span class="td_card_thumb_in">
-                                    <img src="{{ asset($course?->thumb_image) }}" alt="">
-                                    @if ($course?->is_popular == 'enable')
-                                        <span class="td_card_label td_fs_14 td_white_color td_accent_bg">{{ __('translate.Popular') }}</span>
-                                    @endif
-                                    <a href="javascript:;" class="add_to_wishlist {{ in_array($course->id, $wishlist_array) ? 'active' : '' }}" data-course_id="{{ $course->id }}">
-                                        <span class="td_cart_wishlist_icon">
-                                            @include('svg.course_wishlist')
-                                        </span>
-                                    </a>
+      </div>
+      <div class="col-lg-7">
+        <div class="ee_faq_list">
+          <div class="td_accordian active">
+            <div class="td_accordian_head">
+              <h3 class="ee_faq_q">Do you have full syllabus coverage for O Level subjects?</h3>
+              <i class="fa-solid fa-chevron-down ee_faq_chev" aria-hidden="true"></i>
+            </div>
+            <div class="td_accordian_body">
+              <div class="ee_faq_a">Yes. Courses are structured topic-by-topic to match the syllabus, with lessons and targeted practice so you can cover everything confidently.</div>
+            </div>
+          </div>
 
-                                    </span>
+          <div class="td_accordian">
+            <div class="td_accordian_head">
+              <h3 class="ee_faq_q">Which A Level subjects are available right now?</h3>
+              <i class="fa-solid fa-chevron-down ee_faq_chev" aria-hidden="true"></i>
+            </div>
+            <div class="td_accordian_body">
+              <div class="ee_faq_a">The course list depends on your selected exam board and session. Browse Courses to see what’s available and what’s coming next.</div>
+            </div>
+          </div>
 
-                                </div>
-                                <div class="td_card_content">
-                                    <ul class="td_card_meta td_mp_0 td_fs_16 td_heading_color">
-                                    <li>
-                                        @include('svg.course_seat')
+          <div class="td_accordian">
+            <div class="td_accordian_head">
+              <h3 class="ee_faq_q">Is Exam Essentials enough on its own?</h3>
+              <i class="fa-solid fa-chevron-down ee_faq_chev" aria-hidden="true"></i>
+            </div>
+            <div class="td_accordian_body">
+              <div class="ee_faq_a">For most students, yes—if you follow the plan consistently. Use the lessons for clarity, practice for exam technique, and tracking to stay accountable.</div>
+            </div>
+          </div>
 
-                                        <span class="td_opacity_7">{{ $course->total_student }} {{ __('translate.Students') }}</span>
-                                    </li>
-                                    <li>
-                                        @include('svg.course_semester')
+          <div class="td_accordian">
+            <div class="td_accordian_head">
+              <h3 class="ee_faq_q">Can I get a refund if it’s not for me?</h3>
+              <i class="fa-solid fa-chevron-down ee_faq_chev" aria-hidden="true"></i>
+            </div>
+            <div class="td_accordian_body">
+              <div class="ee_faq_a">Refund eligibility depends on the plan and usage. Contact support and we’ll review your request and guide you through the options.</div>
+            </div>
+          </div>
 
-                                        <span class="td_opacity_7">{{ $course->total_lesson }} {{ __('translate.Lessons') }}</span>
-                                    </li>
-                                    </ul>
-                                    <h2 class="td_card_title td_fs_24 td_semibold td_mb_12"><a href="{{ route('course', $course->slug) }}">{{ html_decode($course?->title) }}</a></h2>
-                                    <div class="td_card_price_wrap td_mb_12">
-                                    <div class="td_card_review">
-                                        <div class="td_rating" data-rating="{{ $course->avg_rating }}">
-                                        <i class="fa-regular fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                        <div class="td_rating_percentage">
-                                            <i class="fa-solid fa-star fa-fw"></i>
-                                            <i class="fa-solid fa-star fa-fw"></i>
-                                            <i class="fa-solid fa-star fa-fw"></i>
-                                            <i class="fa-solid fa-star fa-fw"></i>
-                                            <i class="fa-solid fa-star fa-fw"></i>
-                                        </div>
-                                        </div>
-                                        <span class="td_heading_color td_opacity_5 td_fs_14">({{ $course->total_rating }} {{ __('translate.Ratings') }})</span>
-                                    </div>
-                                    <span class="td_card_price td_accent_bg td_white_color td_fs_18 td_medium">
-                                        @if ($course->offer_price)
-                                            {{ currency($course->offer_price) }}
-                                        @else
-                                            {{ currency($course->regular_price) }}
-                                        @endif
-                                    </span>
-                                    </div>
-                                    <div class="td_card_btns_wrap">
-                                    <a href="javascript:;" class="td_btn td_style_1 td_type_3 td_radius_30 td_medium td_fs_14 add_to_cart" data-course_id="{{ $course->id }}">
-                                        <span class="td_btn_in td_accent_color">
-                                        <span>{{ __('translate.Add to Cart') }}</span>
-                                        </span>
-                                    </a>
-                                    <span class="td_fs_18 td_medium td_heading_color">{{ html_decode($course?->instructor?->name) }}</span>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        @endforeach
+          <div class="td_accordian">
+            <div class="td_accordian_head">
+              <h3 class="ee_faq_q">Can I log in on more than one device?</h3>
+              <i class="fa-solid fa-chevron-down ee_faq_chev" aria-hidden="true"></i>
+            </div>
+            <div class="td_accordian_body">
+              <div class="ee_faq_a">Yes. You can use Exam Essentials on desktop, tablet, and mobile so you can study wherever you are.</div>
+            </div>
+          </div>
 
-                    </div>
-                </div><!-- .td_tab_item -->
-            @endforeach
+          <div class="td_accordian">
+            <div class="td_accordian_head">
+              <h3 class="ee_faq_q">Does Exam Essentials guarantee an A or A*?</h3>
+              <i class="fa-solid fa-chevron-down ee_faq_chev" aria-hidden="true"></i>
+            </div>
+            <div class="td_accordian_body">
+              <div class="ee_faq_a">We can’t guarantee a grade, but we do provide the structure, explanations, and practice you need to maximize your results—your consistency does the rest.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="td_height_100 td_height_lg_50"></div>
-  </section>
-  <!-- End Courses Section -->
+  </div>
+</section>
+
+
 
 
   <!-- Start Brands Section -->
+  {{-- <div class="td_height_100 td_height_lg_50"></div>
   <div class="td_height_100 td_height_lg_50"></div>
-  <section class="td_heading_bg td_shape_section_6">
+  <div class="td_height_100 td_height_lg_50"></div>
+  <div class="td_height_100 td_height_lg_50"></div> --}}
+  {{-- <section class="td_heading_bg td_shape_section_6">
     <div class="td_shape_position_1 position-absolute"></div>
     <div class="td_shape_position_2 position-absolute"></div>
     <div class="td_shape_position_3 position-absolute"></div>
@@ -490,7 +548,7 @@
                 <p class="td_fs_18 td_white_color td_opacity_9 td_mb_30">
                     {{ getTranslatedValue($home1_join_instructor, 'first_item_description') }}
                  </p>
-                <a href="{{ route('student.become-an-instructor') }}" class="td_btn td_style_1 td_type_3 td_radius_30 td_medium td_with_shadow">
+                <a href="{{ route('register.instructor') }}" class="td_btn td_style_1 td_type_3 td_radius_30 td_medium td_with_shadow">
                   <span class="td_btn_in td_white_color td_accent_bg">
                     <span>{{ __('translate.Become A Instructor') }}</span>
                     <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -523,7 +581,7 @@
                 <p class="td_fs_18 td_white_color td_opacity_9 td_mb_30">
                     {{ getTranslatedValue($home1_join_instructor, 'second_item_description') }}
                  </p>
-                <a href="{{ route('student.register') }}" class="td_btn td_style_1 td_type_3 td_radius_30 td_medium td_with_shadow">
+                <a href="{{ route('register.student') }}" class="td_btn td_style_1 td_type_3 td_radius_30 td_medium td_with_shadow">
                   <span class="td_btn_in td_white_color td_accent_bg">
                     <span>{{ __('translate.Become A Student') }}</span>
                     <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -553,37 +611,14 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="td_height_80 td_height_lg_80"></div>
-      <h2 class="td_fs_32 td_semibold td_opacity_9 td_mb_50 text-center td_white_color wow fadeInUp"
-        data-wow-duration="1s" data-wow-delay="0.2s">{{ __('translate.Trusted by Worlds 13k Plus Students &') }} <br>{{ __('translate.Teams it Recommended') }}
-      </h2>
-      <div class="td_slider td_style_1 td_slider_gap_24 td_remove_overflow wow fadeInUp" data-wow-duration="1s"
-        data-wow-delay="0.3s">
-        <div class="td_slider_container" data-autoplay="0" data-loop="1" data-speed="800" data-center="0"
-          data-variable-width="0" data-slides-per-view="responsive" data-xs-slides="2" data-sm-slides="3"
-          data-md-slides="4" data-lg-slides="5" data-add-slides="6">
-          <div class="td_slider_wrapper">
-                @foreach ($partners as $partner)
-                    <a href="{{ $partner->link }}" target="_blank" class="td_slide">
-                            <div class="td_brand td_style_1">
-                            <img src="{{ asset($partner->logo) }}" alt="">
-                            </div>
-                    </a>
-                @endforeach
-          </div>
-        </div>
-
-      </div>
-    </div>
     <div class="td_height_100 td_height_lg_50"></div>
-  </section>
+  </section> --}}
 
   <!-- End Brands Section -->
 
 
     <!-- Start Team Section -->
-   <section class="td_shape_section_8 td_hobble">
+   {{-- <section class="td_shape_section_8 td_hobble">
     <span class="td_shape_position_1 position-absolute td_hover_layer_3">
         @include('svg.home1_instructor_shadow')
     </span>
@@ -641,12 +676,12 @@
       </div>
     </div>
     <div class="td_height_100 td_height_lg_50"></div>
-  </section> 
+  </section>  --}}
   <!-- End Team Section -->
 
 
   <!-- Start Testimonials Section -->
-  <section class="td_shape_section_7 td_hobble">
+  {{-- <section class="td_shape_section_7 td_hobble">
     <span class="td_shape_position_1 position-absolute td_hover_layer_3">
         @include('svg.home1_testimonial_shape1')
 
@@ -729,12 +764,12 @@
       </div>
     </div>
     <div class="td_height_100 td_height_lg_50"></div>
-  </section>
+  </section> --}}
 
   <!-- End Testimonials Section -->
 
   <!-- Start Why Choose Us -->
-  <section class="td_gray_bg_4 td_shape_section_1">
+  {{-- <section class="td_gray_bg_4 td_shape_section_1">
     <div class="td_shape td_shape_position_1">
       <svg width="87" height="113" viewBox="0 0 87 113" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -834,12 +869,12 @@
       </div>
     </div>
     <div class="td_height_100 td_height_lg_75"></div>
-  </section>
+  </section> --}}
   <!-- End Why Choose Us -->
 
 
   <!-- Start Blog Section -->
-  <section>
+  {{-- <section>
     <div class="td_height_100 td_height_lg_75"></div>
     <div class="container">
       <div class="td_section_heading td_style_1 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
@@ -890,7 +925,7 @@
       </div>
     </div>
     <div class="td_height_100 td_height_lg_50"></div>
-  </section>
+  </section> --}}
   <!-- End Blog Section -->
 
   @endsection

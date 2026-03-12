@@ -1,6 +1,6 @@
 
 
-@extends('layout_inner_page')
+@extends('layout')
 
 @section('title')
     <title>{{ $seo_setting->seo_title }}</title>
@@ -124,4 +124,3 @@
     <!-- End Page instructors Section -->
 
 @endsection
-

@@ -47,7 +47,7 @@
                 </span>
                 <span class="menu-bar__name">{{ __('translate.My Transaction') }}</span></span></a>
             </li>
-            <li class="{{ Route::is('student.wishlist.index') ? 'active' : '' }}"><a class="collapsed" href="{{ route('student.wishlist.index') }}">
+            {{-- <li class="{{ Route::is('student.wishlist.index') ? 'active' : '' }}"><a class="collapsed" href="{{ route('student.wishlist.index') }}">
                 <span class="menu-bar__text">
                     <span class="crancy-menu-icon crancy-svg-icon__v1">
 
@@ -62,7 +62,7 @@
                 </span>
 
                 </a>
-            </li>
+            </li> --}}
 
 
 
@@ -97,7 +97,7 @@
                 </a>
             </li>
 
-            <li class="{{ Route::is('student.event-calendar') ? 'active' : '' }}"><a class="collapsed" href="{{ route('student.event-calendar') }}">
+            {{-- <li class="{{ Route::is('student.event-calendar') ? 'active' : '' }}"><a class="collapsed" href="{{ route('student.event-calendar') }}">
                 <span class="menu-bar__text">
                     <span class="crancy-menu-icon crancy-svg-icon__v1">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +114,7 @@
                 </span>
 
                 </a>
-            </li>
+            </li> --}}
 
 
             <li class="{{ Route::is('student.notice-board') ? 'active' : '' }}"><a class="collapsed" href="{{ route('student.notice-board') }}">

@@ -1,4 +1,4 @@
-@extends('layout_inner_page')
+@extends('layout')
 @section('title')
 <title>{{ $custom_page->page_name }}</title>
 @endsection
@@ -25,5 +25,4 @@
   </section>
 
 @endsection
-
 

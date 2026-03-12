@@ -1,4 +1,4 @@
-@extends('layout_inner_page')
+@extends('layout')
 @section('title')
     <title>{{ $seo_setting->seo_title }}</title>
     <meta name="title" content="{{ $seo_setting->seo_title }}">
@@ -27,5 +27,4 @@
   </section>
 
 @endsection
-
 

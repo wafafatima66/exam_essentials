@@ -103,9 +103,9 @@
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
                                                         <h4 class="crancy-table__product-title">
                                                         @if ($course->offer_price)
-                                                            {{ currency($course->offer_price) }}
+                                                            {{ number_format($course->offer_price, 2) }}
                                                         @else
-                                                            {{ currency($course?->regular_price) }}
+                                                            {{ number_format($course?->regular_price ?? 0, 2) }}
                                                         @endif
 
                                                         </h4>

@@ -1,4 +1,4 @@
-@extends('layout_inner_page')
+@extends('layout')
 
 @section('title')
     <title>{{ html_decode($course->title) }}</title>

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Modules\Course\App\Models\Course;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +11,7 @@ use Modules\Course\App\Models\CourseEnrollmentList;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -58,6 +58,22 @@ class User extends Authenticatable
         'zoom_access_token',
         'zoom_refresh_token',
         'zoom_token_expiry',
+        'school_name',
+        'college_name',
+        'education_qualification',
+        'o_level_results',
+        'a_level_results',
+        'current_university_semester',
+        'teaching_experience',
+        'educational_achievements',
+        'guardian_phone',
+        'expected_commitment',
+        'passport_photo',
+        'nid_photo',
+        'notable_student_outcome',
+        'bank_account_number',
+        'bkash_number',
+        'personal_statement',
     ];
 
     /**

@@ -104,17 +104,6 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <div class="crancy__item-form--group mg-top-form-20">
-                                                    <label class="crancy__item-label">{{ __('translate.Course Language') }} * </label>
-                                                    <select class="form-select crancy__item-input" name="course_language_id">
-                                                        <option value="">{{ __('translate.Select Language') }}</option>
-                                                        @foreach ($course_languages as $course_language)
-                                                            <option  {{ $course_language->id == old('course_language_id') ? 'selected' : '' }} value="{{ $course_language->id }}">{{ $course_language?->translate?->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
 
                                             <div class="col-md-6">
                                                 <div class="crancy__item-form--group mg-top-form-20">

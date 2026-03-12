@@ -123,8 +123,33 @@ class ProfileController extends Controller
         $user = Auth::guard('web')->user();
         $user->name = $request->name;
         $user->phone = $request->phone;
+        $user->guardian_phone = $request->guardian_phone;
         $user->address = $request->address;
         $user->gender = $request->gender;
+        $user->dob = $request->date_of_birth;
+
+        $user->school_name = $request->school_name;
+        $user->college_name = $request->college_name;
+        $user->education_qualification = $request->education_qualification;
+        $user->o_level_results = $request->o_level_results;
+        $user->a_level_results = $request->a_level_results;
+        $user->current_university_semester = $request->current_university_semester;
+
+        $user->teaching_experience = $request->teaching_experience;
+        $user->educational_achievements = $request->educational_achievements;
+        $user->notable_student_outcome = $request->notable_student_outcome;
+        $user->expected_commitment = $request->expected_commitment;
+
+        $user->bank_account_number = $request->bank_account_number;
+        $user->bkash_number = $request->bkash_number;
+        $user->personal_statement = $request->personal_statement;
+        $user->instructor_experience = $request->instructor_experience;
+        $user->designation = $request->designation;
+        $user->about_me = $request->about_me;
+        $user->facebook = $request->facebook;
+        $user->linkedin = $request->linkedin;
+        $user->twitter = $request->twitter;
+        $user->instagram = $request->instagram;
         $user->save();
 
         if($request->file('image')){
@@ -138,6 +163,34 @@ class ProfileController extends Controller
             $user->save();
             if($old_image){
                 if(File::exists(public_path().'/'.$old_image))unlink(public_path().'/'.$old_image);
+            }
+        }
+
+        if($request->file('passport_photo')){
+            $old_file = $user->passport_photo;
+            $doc = $request->passport_photo;
+            $extention = $doc->getClientOriginalExtension();
+            $file_name = 'passport-photo'.date('-Y-m-d-h-i-s-').rand(999,9999).'.'.$extention;
+            $file_name = 'uploads/custom-files/'.$file_name;
+            $doc->move(public_path('uploads/custom-files/'), $file_name);
+            $user->passport_photo = $file_name;
+            $user->save();
+            if($old_file){
+                if(File::exists(public_path().'/'.$old_file))unlink(public_path().'/'.$old_file);
+            }
+        }
+
+        if($request->file('nid_photo')){
+            $old_file = $user->nid_photo;
+            $doc = $request->nid_photo;
+            $extention = $doc->getClientOriginalExtension();
+            $file_name = 'nid-photo'.date('-Y-m-d-h-i-s-').rand(999,9999).'.'.$extention;
+            $file_name = 'uploads/custom-files/'.$file_name;
+            $doc->move(public_path('uploads/custom-files/'), $file_name);
+            $user->nid_photo = $file_name;
+            $user->save();
+            if($old_file){
+                if(File::exists(public_path().'/'.$old_file))unlink(public_path().'/'.$old_file);
             }
         }
 

@@ -87,7 +87,6 @@
                                                 </div>
                                             </div>
 
-                                            <input type="hidden" name="course_language_id" value="{{ $course->course_language_id }}">
 
 
                                             <div class="col-md-12">

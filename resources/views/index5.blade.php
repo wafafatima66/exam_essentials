@@ -165,114 +165,20 @@
 				<div class="col-lg-6">
 					<div class="header-menu">
 						<ul class="nav_scroll">
-
-                            @if ($general_setting->selected_theme == 'all_theme')
-							<li><a href="#">{{ __('translate.Home') }}<i class="bi bi-chevron-down"></i></a>
-								<ul class="sub_menu">
-
-
-
-                                    <li>
-                                        <a href="{{ route('home', ['theme' => 'one']) }}">{{ __('translate.Online Educations') }}</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="{{ route('home', ['theme' => 'two']) }}">{{ __('translate.Education') }}</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="{{ route('home', ['theme' => 'three']) }}">{{ __('translate.KinderGarden') }}</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="{{ route('home', ['theme' => 'four']) }}">{{ __('translate.University') }}</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="{{ route('home', ['theme' => 'four']) }}">{{ __('translate.University') }}</a>
-                                    </li>
-
-
-                                     <li>
-                                        <a href="{{ route('home', ['theme' => 'five']) }}">{{ __('translate.Modern School') }}</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="{{ route('home', ['theme' => 'six']) }}">{{ __('translate.Online Education') }}</a>
-                                    </li>
-
-
-								</ul>
-							</li>
-                            @else
-                            <li><a href="{{ route('home') }}">{{ __('translate.Home') }}</a></li>
-                            @endif
-
-
-                             @if ($general_setting->course_theme == 'with_sidebar')
-                                <li>
-                                    <a href="{{ route('courses', ['page_view' => 'sidebar_grid_view']) }}">{{ __('translate.Courses') }}</a>
-                                </li>
-                            @elseif ($general_setting->course_theme == 'without_sidebar')
-                                <li>
-                                    <a href="{{ route('courses', ['page_view' => 'grid']) }}">{{ __('translate.Courses') }}</a>
-                                </li>
-                            @else
-
-							<li><a href="#">{{ __('translate.Courses') }}<i class="bi bi-chevron-down"></i></a>
-								<ul class="sub_menu">
-                                     <li>
-                                        <a href="{{ route('courses', ['page_view' => 'grid']) }}">{{ __('translate.Courses Grid View') }}</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('courses', ['page_view' => 'list']) }}">{{ __('translate.Courses List View') }}</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('courses', ['page_view' => 'sidebar_grid_view']) }}">{{ __('translate.Courses Grid With Sidebar') }}</a>
-                                    </li>
-								</ul>
-							</li>
-
-                            @endif
-
-                              <li><a href="{{ route('instructors') }}">{{ __('translate.Instructors') }}</a></li>
-
-                               @if ($general_setting->blog_theme == 'with_sidebar')
-                                    <li>
-                                        <a href="{{ route('blogs', ['page_view' => 'blogs_with_sidebar']) }}">{{ __('translate.Blogs') }}</a>
-                                    </li>
-                                @elseif ($general_setting->blog_theme == 'without_sidebar')
-                                    <li><a href="{{ route('blogs') }}">{{ __('translate.Blogs') }}</a></li>
-                                @else
-                                    <li><a href="#">{{ __('translate.Blogs') }}<i class="bi bi-chevron-down"></i></a>
-                                        <ul class="sub_menu">
-                                            <li><a href="{{ route('blogs') }}">{{ __('translate.Blogs') }}</a></li>
-                                            <li>
-                                                <a href="{{ route('blogs', ['page_view' => 'blogs_with_sidebar']) }}">{{ __('translate.Blog With Sidebar') }}</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                @endif
-
-							<li><a href="#">{{ __('translate.Pages') }}<i class="bi bi-chevron-down"></i></a>
-								<ul class="sub_menu">
-									<li><a href="{{ route('about-us') }}">{{ __('translate.About Us') }}</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('privacy-policy') }}">{{ __('translate.Privacy Policy') }}</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('terms-conditions') }}">{{ __('translate.Terms & Conditions') }}</a>
-                                    </li>
-                                    <li><a href="{{ route('faq') }}">{{ __('translate.FAQ') }}</a></li>
-                                    @foreach ($custom_pages as $custom_page)
-                                        <li>
-                                            <a href="{{ route('custom-page', $custom_page->slug) }}">{{ $custom_page->page_name }}</a>
-                                        </li>
-                                    @endforeach
-								</ul>
-							</li>
-                            <li><a href="{{ route('contact-us') }}">{{ __('translate.Contact') }}</a></li>
+							<li><a href="{{ route('home') }}">Home</a></li>
+							<li><a href="{{ route('courses', ['search' => 'Edexel A Level']) }}">Edexel a level</a></li>
+							<li><a href="{{ route('courses', ['search' => 'Cambridge A Level']) }}">Cambridge a level</a></li>
+							<li><a href="{{ route('courses', ['search' => 'Edexel O Level']) }}">Edexel 0 level subject</a></li>
+							<li><a href="{{ route('courses', ['search' => 'Cambridge O Level']) }}">Cambridge 0 level</a></li>
+							<li><a href="{{ route('courses', ['search' => 'A Level']) }}">A level pricing</a></li>
+							<li><a href="{{ route('courses', ['search' => 'O Level']) }}">O level pricing</a></li>
+							<li><a href="{{ route('courses') }}">Store</a></li>
+							@guest('web')
+								<li><a href="{{ route('student.login') }}">Login</a></li>
+								<li><a href="{{ route('student.register') }}">Signup</a></li>
+							@else
+								<li><a href="{{ Auth::guard('web')->user()->is_seller == 1 ? route('instructor.dashboard') : route('student.dashboard') }}">Dashboard</a></li>
+							@endguest
 						</ul>
 					</div>
 				</div>
@@ -318,102 +224,20 @@
 					</a>
 				</div>
 				<ul class="nav_scroll">
-                     @if ($general_setting->selected_theme == 'all_theme')
-                        <li><a href="#">{{ __('translate.Home') }}<i class="bi bi-chevron-down"></i></a>
-                            <ul class="sub_menu">
-                                <li>
-                                    <a href="{{ route('home', ['theme' => 'one']) }}">{{ __('translate.Online Educations') }}</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('home', ['theme' => 'two']) }}">{{ __('translate.Education') }}</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('home', ['theme' => 'three']) }}">{{ __('translate.KinderGarden') }}</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('home', ['theme' => 'four']) }}">{{ __('translate.University') }}</a>
-                                </li>
-
-
-                                    <li>
-                                    <a href="{{ route('home', ['theme' => 'five']) }}">{{ __('translate.Modern School') }}</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('home', ['theme' => 'six']) }}">{{ __('translate.Online Education') }}</a>
-                                </li>
-                            </ul>
-                        </li>
-                    @else
-                        <li><a href="{{ route('home') }}">{{ __('translate.Home') }}</a></li>
-                    @endif
-
-                     @if ($general_setting->course_theme == 'with_sidebar')
-                        <li>
-                            <a href="{{ route('courses', ['page_view' => 'sidebar_grid_view']) }}">{{ __('translate.Courses') }}</a>
-                        </li>
-                    @elseif ($general_setting->course_theme == 'without_sidebar')
-                        <li>
-                            <a href="{{ route('courses', ['page_view' => 'grid']) }}">{{ __('translate.Courses') }}</a>
-                        </li>
-                    @else
-					<li><a href="#">{{ __('translate.Courses') }}<i class="bi bi-chevron-down"></i></a>
-						<ul class="sub_menu">
-							 <li>
-                                <a href="{{ route('courses', ['page_view' => 'grid']) }}">{{ __('translate.Courses Grid View') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('courses', ['page_view' => 'list']) }}">{{ __('translate.Courses List View') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('courses', ['page_view' => 'sidebar_grid_view']) }}">{{ __('translate.Courses Grid With Sidebar') }}</a>
-                            </li>
-						</ul>
-					</li>
-                    @endif
-
-                    <li><a href="{{ route('instructors') }}">{{ __('translate.Instructors') }}</a></li>
-
-                    @if ($general_setting->blog_theme == 'with_sidebar')
-                        <li>
-                            <a href="{{ route('blogs', ['page_view' => 'blogs_with_sidebar']) }}">{{ __('translate.Blogs') }}</a>
-                        </li>
-                    @elseif ($general_setting->blog_theme == 'without_sidebar')
-                        <li><a href="{{ route('blogs') }}">{{ __('translate.Blogs') }}</a></li>
-                    @else
-					<li><a href="#">{{ __('translate.Blogs') }}<i class="bi bi-chevron-down"></i></a>
-						<ul class="sub_menu">
-							<li><a href="{{ route('blogs') }}">{{ __('translate.Blogs') }}</a></li>
-                            <li>
-                                <a href="{{ route('blogs', ['page_view' => 'blogs_with_sidebar']) }}">{{ __('translate.Blog With Sidebar') }}</a>
-                            </li>
-						</ul>
-					</li>
-                    @endif
-
-					<li><a href="#">{{ __('translate.Pages') }}<i class="bi bi-chevron-down"></i></a>
-						<ul class="sub_menu">
-							<li><a href="{{ route('about-us') }}">{{ __('translate.About Us') }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('privacy-policy') }}">{{ __('translate.Privacy Policy') }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('terms-conditions') }}">{{ __('translate.Terms & Conditions') }}</a>
-                                </li>
-                                <li><a href="{{ route('faq') }}">{{ __('translate.FAQ') }}</a></li>
-                                @foreach ($custom_pages as $custom_page)
-                                    <li>
-                                        <a href="{{ route('custom-page', $custom_page->slug) }}">{{ $custom_page->page_name }}</a>
-                                    </li>
-                                @endforeach
-						</ul>
-					</li>
-
-					  <li><a href="{{ route('contact-us') }}">{{ __('translate.Contact Us') }}</a></li>
+					<li><a href="{{ route('home') }}">Home</a></li>
+					<li><a href="{{ route('courses', ['search' => 'Edexel A Level']) }}">Edexel a level</a></li>
+					<li><a href="{{ route('courses', ['search' => 'Cambridge A Level']) }}">Cambridge a level</a></li>
+					<li><a href="{{ route('courses', ['search' => 'Edexel O Level']) }}">Edexel 0 level subject</a></li>
+					<li><a href="{{ route('courses', ['search' => 'Cambridge O Level']) }}">Cambridge 0 level</a></li>
+					<li><a href="{{ route('courses', ['search' => 'A Level']) }}">A level pricing</a></li>
+					<li><a href="{{ route('courses', ['search' => 'O Level']) }}">O level pricing</a></li>
+					<li><a href="{{ route('courses') }}">Store</a></li>
+					@guest('web')
+						<li><a href="{{ route('student.login') }}">Login</a></li>
+						<li><a href="{{ route('student.register') }}">Signup</a></li>
+					@else
+						<li><a href="{{ Auth::guard('web')->user()->is_seller == 1 ? route('instructor.dashboard') : route('student.dashboard') }}">Dashboard</a></li>
+					@endguest
 				</ul>
 			</nav>
 		</div>
@@ -514,7 +338,7 @@
 						<!-- hero button -->
 						<div class="hero-button">
 							<div class="hero-btn">
-								<a href="{{ route('register') }}">{{ __('translate.Get Started') }}<i class="flaticon flaticon-right-arrow"></i></a>
+								<a href="{{ route('student.register') }}">{{ __('translate.Get Started') }}<i class="flaticon flaticon-right-arrow"></i></a>
 							</div>
 							<div class="hero-course-btn">
 								<a href="{{ route('courses') }}">{{ __('translate.Find Course') }}<i class="flaticon flaticon-right-arrow"></i></a>

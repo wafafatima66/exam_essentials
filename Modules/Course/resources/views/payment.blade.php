@@ -1,6 +1,6 @@
 
 
-@extends('layout_inner_page')
+@extends('layout')
 
 @section('title')
     <title>{{ __('translate.Shopping Cart') }}</title>

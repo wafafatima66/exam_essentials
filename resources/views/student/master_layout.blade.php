@@ -90,7 +90,7 @@
                                                     @php
                                                         $auth_user = Auth::guard('web')->user();
                                                     @endphp
-                                                    @if ($auth_user->instructor_joining_request == 'approved')
+                                                    {{-- @if ($auth_user->instructor_joining_request == 'approved')
                                                         <div class="profile-switcher-wrapper d-md-flex d-none gap-3 align-items-center">
                                                             <p class="text">{{ __('translate.Switch to Instructor Portal') }}</p>
                                                             <label class="custom-switch switch_to_instructor">
@@ -106,7 +106,7 @@
                                                                 <span class="slider"></span>
                                                             </label>
                                                         </div>
-                                                    @endif
+                                                    @endif --}}
 
 													<!-- Header Option Group -->
 													<div class="crancy-header__options">

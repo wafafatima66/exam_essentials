@@ -163,7 +163,7 @@
                             <div class="overview-profile-inner">
 
                                 @if ($user->is_seller == 1)
-                                    <a target="_blank" href="{{ route('instructors', $user->username) }}" class="crancy-btn crancy-full-width mg-top-20"> <i class="fas fa-eye    "></i> {{ __('translate.Go To Public Profile') }}</a>
+                                    <a target="_blank" href="{{ route('instructor.profile', $user->username) }}" class="crancy-btn crancy-full-width mg-top-20"> <i class="fas fa-eye    "></i> {{ __('translate.Instructor Profile') }}</a>
                                 @endif
 
 

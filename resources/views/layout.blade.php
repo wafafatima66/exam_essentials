@@ -7,13 +7,91 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- Google Fonts: Noto Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter Tight', sans-serif;
+        }
+
+        .td_main_header.td_heading_bg {
+            background: linear-gradient(to right, #0160A9, #0A375A);
+            background-color: transparent !important;
+        }
+
+        .td_main_header.td_heading_bg .td_nav_list a {
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+        }
+
+        .td_main_header.td_heading_bg .td_nav .td_nav_list > li {
+            margin-right: 16px;
+        }
+
+        .td_main_header.td_heading_bg .td_nav .td_nav_list > li > a {
+            padding: 8px 0;
+        }
+
+        .td_main_header.td_heading_bg .td_nav_list a:hover {
+            color: var(--accent-color);
+        }
+
+        .td_main_header.td_heading_bg .top_bar-curr-lang-wrapper,
+        .td_main_header.td_heading_bg .top_bar-curr-lang-wrapper * {
+            color: #ffffff;
+        }
+
+        .td_main_header.td_heading_bg .top_bar-curr-lang-wrapper svg * {
+            stroke: #ffffff;
+        }
+
+        .td_main_header.td_heading_bg .top_bar-curr-lang-wrapper svg * {
+            fill: #ffffff;
+        }
+
+        .td_main_header.td_heading_bg .td_nav .td_nav_list ul {
+            width: 210px;
+            background-color: var(--heading-color);
+            box-shadow: 2px 2px 50px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .td_main_header.td_heading_bg .td_nav .td_nav_list ul a {
+            padding: 8px 16px;
+        }
+
+        .td_main_header.td_heading_bg .td_nav .td_nav_list ul a:hover {
+            color: var(--accent-color);
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+
+        .font-black {
+            font-weight: 900;
+        }
+
+        .tracking-tighter {
+            letter-spacing: -0.05em;
+        }
+
+        .text-uta-blue {
+            color: #3b82f6;
+        }
+
+        .text-uta-orange {
+            color: #f97316;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+    </style>
     
     <!-- Favicon Icon -->
     <link rel="shortcut icon" href="{{ asset($general_setting->favicon) }}" type="image/x-icon">
@@ -97,7 +175,7 @@
 
 <!-- Start Header Section -->
 <header class="td_site_header td_style_1 td_type_2 td_sticky_header td_medium td_heading_color">
-    <div class="td_top_header td_top_header_two  td_heading_bg td_white_color">
+    <div class="td_top_header td_top_header_two  td_heading_bg td_white_color" style="display: none;">
         <div class="container">
             <div class="td_top_header_in">
                 <div class="td_top_header_left">
@@ -190,54 +268,18 @@
                                  </span>
                             </div>
                         </div>
-                        <div class="d-flex gap-3">
-                            <div class="position-relative">
-                                <div class="edc-searchbar-clickaway td_search_tobble_btn"></div>
-                                <button class="td_circle_btn td_center td_search_tobble_btn" type="button">
-                            <span class="d-inline-flex">
-                                @include('svg.search_menu')
-                            </span>
-                                </button>
-                                <div class="td_header_search_wrap">
-                                    <form action="{{ route('courses') }}" class="td_header_search">
-                                        <input type="text" class="td_header_search_input" name="search"
-                                               placeholder="{{ __('translate.Search Course') }}">
-                                        <button class="td_header_search_btn td_center" type="submit">
-                                    <span class="d-inline-flex">
-                                    @include('svg.search_menu')
-                                    </span>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                            <a class="td_circle_btn td_center" href="{{ route('student.wishlist.index') }}">
-                                <span class="d-inline-flex">
-                                @include('svg.menu_heart')
-                            </span>
-                                <span class="td_circle_btn_label "
-                                      id="total_wishlist">{{ count($wishlist_array) ?? 0 }}</span>
-                            </a>
-                            <a class="td_circle_btn td_center" href="{{ route('carts') }}">
-                                <span class="d-inline-flex">
-                                @include('svg.menu_cart')
-                            </span>
-                                @php
-                                    $carts = session()->get('cart', []);
-                                @endphp
-                                <span class="td_circle_btn_label " id="total_cart">{{ count($carts) }}</span>
-                            </a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="td_main_header">
+    <div class="td_main_header td_heading_bg td_white_color">
         <div class="container">
             <div class="td_main_header_in">
                 <div class="td_main_header_left">
                     <a class="td_site_branding" href="{{ route('home') }}">
-                        <img src="{{ asset($general_setting->logo) }}" alt="Logo">
+                        <span class="text-2xl font-black tracking-tighter white uppercase">EXAM<span class="text-uta-orange">ESSENTIALS</span></span>
                     </a>
                 </div>
 
@@ -246,115 +288,48 @@
                         <div class="td_nav_list_wrap">
                             <div class="td_nav_list_wrap_in">
                                 <ul class="td_nav_list">
-                                    @if ($general_setting->selected_theme == 'all_theme')
-                                        <li><a href="{{ route('home') }}">{{ __('translate.Home') }}</a></li>
-                                        <!-- <li class="menu-item-has-children">
-                                            <a href="{{ route('home') }}">{{ __('translate.Home') }}</a>
-                                            <ul>
+                                    <li><a href="{{ route('home') }}">Home</a></li>
 
-                                                <li>
-                                                    <a href="{{ route('home', ['theme' => 'one']) }}"><span>{{ __('translate.Online Educations') }}</span></a
-                                                    >
-                                                </li>
-
-                                                <li>
-                                                    <a href="{{ route('home', ['theme' => 'two']) }}"><span>{{ __('translate.Education') }}</span></a
-                                                    >
-                                                </li>
-
-                                                <li>
-                                                    <a href="{{ route('home', ['theme' => 'three']) }}"><span>{{ __('translate.KinderGarden') }}</span></a
-                                                    >
-                                                </li>
-
-                                                <li>
-                                                    <a href="{{ route('home', ['theme' => 'four']) }}"><span>{{ __('translate.University') }}</span></a
-                                                    >
-                                                </li>
-
-                                                <li>
-                                                    <a href="{{ route('home', ['theme' => 'five']) }}"><span>{{ __('translate.Modern School') }}</span></a
-                                                    >
-                                                </li>
-
-                                                <li>
-                                                    <a href="{{ route('home', ['theme' => 'six']) }}"><span>{{ __('translate.Online Education') }}</span></a
-                                                    >
-                                                </li>
-
-                                            </ul>
-                                        </li> -->
-                                    @else
-                                        <li><a href="{{ route('home') }}">{{ __('translate.Home') }}</a></li>
-                                    @endif
-
-
-                                    @if ($general_setting->course_theme == 'with_sidebar')
-                                        <li>
-                                            <a href="{{ route('courses', ['page_view' => 'sidebar_grid_view']) }}">{{ __('translate.Courses') }}</a>
-                                        </li>
-                                    @elseif ($general_setting->course_theme == 'without_sidebar')
-                                        <li>
-                                            <a href="{{ route('courses', ['page_view' => 'grid']) }}">{{ __('translate.Courses') }}</a>
-                                        </li>
-                                    @else
-                                        <li class="menu-item-has-children">
-                                            <a href="{{ route('courses') }}">{{ __('translate.Courses') }}</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="{{ route('courses', ['page_view' => 'grid']) }}">{{ __('translate.Courses Grid View') }}</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ route('courses', ['page_view' => 'list']) }}">{{ __('translate.Courses List View') }}</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ route('courses', ['page_view' => 'sidebar_grid_view']) }}">{{ __('translate.Courses Grid With Sidebar') }}</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    @endif
-
-                                    <li><a href="{{ route('instructors') }}">{{ __('translate.Instructors') }}</a></li>
-
-
-                                    @if ($general_setting->blog_theme == 'with_sidebar')
-                                        <li>
-                                            <a href="{{ route('blogs', ['page_view' => 'blogs_with_sidebar']) }}">{{ __('translate.Blogs') }}</a>
-                                        </li>
-                                    @elseif ($general_setting->blog_theme == 'without_sidebar')
-                                        <li><a href="{{ route('blogs') }}">{{ __('translate.Blogs') }}</a></li>
-                                    @else
-                                        <li><a href="{{ route('blogs') }}">{{ __('translate.Blogs') }}</a></li>
-                                    @endif
-
-                                    {{-- <li class="menu-item-has-children">
-                                        <a href="javascript:;">{{ __('translate.Pages') }}</a>
+                                    <li class="menu-item-has-children">
+                                        <a href="javascript:;">Edexcel</a>
                                         <ul>
-                                            <li><a href="{{ route('about-us') }}">{{ __('translate.About Us') }}</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('privacy-policy') }}">{{ __('translate.Privacy Policy') }}</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('terms-conditions') }}">{{ __('translate.Terms & Conditions') }}</a>
-                                            </li>
-                                            <li><a href="{{ route('faq') }}">{{ __('translate.FAQ') }}</a></li>
-                                            @foreach ($custom_pages as $custom_page)
-                                                <li>
-                                                    <a href="{{ route('custom-page', $custom_page->slug) }}">{{ $custom_page->page_name }}</a>
-                                                </li>
-                                            @endforeach
-
+                                            <li><a href="{{ route('courses', ['search' => 'Edexel A Level']) }}">A level</a></li>
+                                            <li><a href="{{ route('courses', ['search' => 'Edexel O Level']) }}">O level</a></li>
                                         </ul>
-                                    </li> --}}
+                                    </li>
 
+                                    <li class="menu-item-has-children">
+                                        <a href="javascript:;">Cambridge</a>
+                                        <ul>
+                                            <li><a href="{{ route('courses', ['search' => 'Cambridge A Level']) }}">A level</a></li>
+                                            <li><a href="{{ route('courses', ['search' => 'Cambridge O Level']) }}">O level</a></li>
+                                        </ul>
+                                    </li>
 
-                                    <li><a href="{{ route('contact-us') }}">{{ __('translate.Contact Us') }}</a></li>
+                                    <li class="menu-item-has-children">
+                                        <a href="javascript:;">Pricing</a>
+                                        <ul>
+                                            <li><a href="{{ route('courses', ['search' => 'A Level']) }}">A level pricing</a></li>
+                                            <li><a href="{{ route('courses', ['search' => 'O Level']) }}">O level pricing</a></li>
+                                        </ul>
+                                    </li>
 
+                                    <li><a href="{{ route('courses') }}">Store</a></li>
 
+                                    <li class="menu-item-has-children">
+                                        <a href="javascript:;">Account</a>
+                                        <ul>
+                                            @guest('web')
+                                                <li><a href="{{ route('student.login') }}">Login</a></li>
+                                                <li><a href="{{ route('student.register') }}">Signup</a></li>
+                                            @else
+                                                <li><a href="{{ Auth::guard('web')->user()->is_seller == 1 ? route('instructor.dashboard') : route('student.dashboard') }}">Dashboard</a></li>
+                                            @endguest
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
-                            <div class="top_bar-curr-lang-wrapper mt-4">
+                            {{-- <div class="top_bar-curr-lang-wrapper mt-4">
                                 <div class="curr-wrapper" style="display: none !important;">
                                 <span>
                                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
@@ -423,13 +398,49 @@
 
                                  </span>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </nav>
                 </div>
 
                 <div class="td_main_header_right">
-                    <div class="td_header_btns">
+                    <div class="ee_nav_actions">
+                        <div class="position-relative ee_nav_action_wrap">
+                            <div class="edc-searchbar-clickaway td_search_tobble_btn"></div>
+                            <button class="td_circle_btn td_center td_search_tobble_btn ee_nav_action" type="button" aria-label="Search">
+                                <span class="d-inline-flex">
+                                    @include('svg.search_menu')
+                                </span>
+                            </button>
+                            <div class="td_header_search_wrap">
+                                <form action="{{ route('courses') }}" class="td_header_search">
+                                    <input type="text" class="td_header_search_input" name="search"
+                                           placeholder="{{ __('translate.Search Course') }}">
+                                    <button class="td_header_search_btn td_center" type="submit">
+                                        <span class="d-inline-flex">
+                                            @include('svg.search_menu')
+                                        </span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <a class="td_circle_btn td_center ee_nav_action" href="{{ route('student.wishlist.index') }}" aria-label="Wishlist">
+                            <span class="d-inline-flex">
+                                @include('svg.menu_heart')
+                            </span>
+                            <span class="td_circle_btn_label " id="total_wishlist">{{ count($wishlist_array) ?? 0 }}</span>
+                        </a>
+                        <a class="td_circle_btn td_center ee_nav_action" href="{{ route('carts') }}" aria-label="Cart">
+                            <span class="d-inline-flex">
+                                @include('svg.menu_cart')
+                            </span>
+                            @php
+                                $carts = session()->get('cart', []);
+                            @endphp
+                            <span class="td_circle_btn_label " id="total_cart">{{ count($carts) }}</span>
+                        </a>
+                    </div>
+                    {{-- <div class="td_header_btns">
                         @guest('web')
                             <a href="{{ route('student.login') }}"
                                class="td_btn td_style_1 td_radius_30 td_medium">
@@ -472,7 +483,7 @@
                 </span>
                             </a>
                         @endguest
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -491,14 +502,12 @@
             <div class="td_footer_col">
                 <div class="td_footer_widget">
                     <div class="td_footer_text_widget td_fs_18">
-                        <img src="{{ asset($general_setting->footer_logo) }}" alt="Logo">
-                        <p>{{ $footer->about_us }}</p>
+                        <a href="{{ route('home') }}" class="td_site_branding">
+                            <span class="text-2xl font-black tracking-tighter uppercase td_white_color">EXAM<span class="text-uta-orange">ESSENTIALS</span></span>
+                        </a>
+                        <p class="td_fs_14">{{ $footer->about_us }}</p>
                     </div>
-                    <ul class="td_footer_address_widget td_medium td_mp_0">
-                        <li><i class="fa-solid fa-phone-volume"></i><a
-                                href="tel:{{ $footer->phone }}">{{ $footer->phone }}</a></li>
-                        <li><i class="fa-solid fa-location-dot"></i>{{ $footer->address }}</li>
-                    </ul>
+              
                 </div>
             </div>
             <div class="td_footer_col">
@@ -527,8 +536,10 @@
                 </div>
             </div>
             <div class="td_footer_col">
+         
                 <div class="td_footer_widget">
-                    <h2 class="td_footer_widget_title td_fs_32 td_white_color td_medium td_mb_30">{{ __('translate.Subscribe Now') }}</h2>
+               
+                    {{-- <h2 class="td_footer_widget_title td_fs_32 td_white_color td_medium td_mb_30">{{ __('translate.Subscribe Now') }}</h2>
                     <div class="td_newsletter td_style_1">
                         <p class="td_mb_20 td_opacity_7">{{ __('translate.Far far away, behind the word mountains, far from the Consonantia.') }}</p>
                         <form action="{{ route('store-newsletter') }}" method="POST" class="td_newsletter_form">
@@ -542,7 +553,7 @@
                   </span>
                             </button>
                         </form>
-                    </div>
+                    </div> --}}
                     <div class="td_footer_social_btns td_fs_20">
                         <a target="_blank" href="{{ $footer->facebook }}" class="td_center">
                             <i class="fa-brands fa-facebook-f"></i>
@@ -557,6 +568,12 @@
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
                     </div>
+
+                            <ul class="td_footer_address_widget td_medium td_mp_0 mt-5">
+                                <li><i class="fa-solid fa-phone-volume"></i><a href="tel:{{ $footer->phone }}">{{ $footer->phone }}</a></li>
+                                <li><i class="fa-solid fa-location-dot"></i>{{ $footer->address }}</li>
+                            </ul>
+                    
                 </div>
             </div>
         </div>

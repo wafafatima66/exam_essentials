@@ -46,13 +46,14 @@ Route::group(['middleware' => ['HtmlSpecialchars', 'MaintenanceMode']], function
 
     Route::get('/download-file/{file}', [HomeController::class, 'download_file'])->name('download-file');
 
+    Route::get('/register', [StudentRegisterController::class, 'custom_register_page'])->name('student.register');
+    Route::post('/register/student/submit', [StudentRegisterController::class, 'registerStudent'])->name('register.student.submit');
+    Route::get('/register/student', [StudentRegisterController::class, 'showStudentRegisterForm'])->name('register.student');
+    Route::get('/register/instructor', [StudentRegisterController::class, 'showInstructorRegisterForm'])->name('register.instructor');
+    Route::post('/register/instructor/submit', [StudentRegisterController::class, 'registerInstructor'])->name('register.instructor.submit');
+    Route::get('/instructor-pending-approval', [StudentRegisterController::class, 'instructorPendingApproval'])->name('instructor.pending.approval');
 
-    Route::get('register/student', [StudentRegisterController::class, 'showStudentRegisterForm'])->name('register.student');
-    Route::post('register/student', [StudentRegisterController::class, 'registerStudent'])->name('register.student.submit');
-    Route::get('register/instructor', [StudentRegisterController::class, 'showInstructorRegisterForm'])->name('register.instructor');
-    Route::post('register/instructor', [StudentRegisterController::class, 'registerInstructor'])->name('register.instructor.submit');
-
-Auth::routes(['register' => false]);
+    Auth::routes(['register' => false]);
 
     Route::group(['as' => 'student.', 'prefix' => 'student'], function () {
         Route::controller(StudentLoginController::class)->group(function () {
@@ -74,9 +75,6 @@ Auth::routes(['register' => false]);
             Route::post('/store-reset-password/{token}', 'store_reset_password')->name('store-reset-password');
 
             Route::controller(StudentRegisterController::class)->group(function () {
-
-                Route::get('/register', 'custom_register_page')->name('register');
-                Route::post('/store-register', 'store_register')->name('store-register');
                 Route::get('/register-verification', 'register_verification')->name('register-verification');
             });
 

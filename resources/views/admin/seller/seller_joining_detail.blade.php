@@ -75,168 +75,159 @@
 
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Gender') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.Guardian Phone') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->gender) }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->guardian_phone) }}</h4>
                                                     </td>
-
-                                                </tr>
-
-
-
-                                                <tr class="odd">
-
-                                                    <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Experience') }}</h4>
-                                                    </td>
-
-                                                    <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->instructor_experience) }} {{ __('translate.Years') }}</h4>
-                                                    </td>
-
-                                                </tr>
-
-
-
-                                                <tr class="odd">
-
-                                                    <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Designation') }}</h4>
-                                                    </td>
-
-                                                    <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->designation) }}</h4>
-                                                    </td>
-
                                                 </tr>
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Bio') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.School Name') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->about_me) }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->school_name) }}</h4>
                                                     </td>
-
                                                 </tr>
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Country') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.College Name') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->country) }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->college_name) }}</h4>
                                                     </td>
-
                                                 </tr>
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.State') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.Education Qualification') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->state) }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->education_qualification) }}</h4>
                                                     </td>
-
                                                 </tr>
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.City') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.O-level Results') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->city) }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->o_level_results) }}</h4>
                                                     </td>
-
                                                 </tr>
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Address') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.A-level Results') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->address) }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->a_level_results) }}</h4>
                                                     </td>
-
                                                 </tr>
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Facebook') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.Current University/Semester') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title"><a target="_blank" href="{{ html_decode($user->facebook) }}">{{ html_decode($user->facebook) }}</a></h4>
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->current_university_semester) }}</h4>
                                                     </td>
-
                                                 </tr>
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Linkedin') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.Teaching Experience') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title"><a target="_blank" href="{{ html_decode($user->linkedin) }}">{{ html_decode($user->linkedin) }}</a></h4>
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->teaching_experience) }}</h4>
                                                     </td>
-
                                                 </tr>
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Twitter') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.Achievements & Awards') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title"><a target="_blank" href="{{ html_decode($user->twitter) }}">{{ html_decode($user->twitter) }}</a></h4>
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->educational_achievements) }}</h4>
                                                     </td>
-
                                                 </tr>
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Instagram') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.Notable Student Outcome') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title"><a target="_blank" href="{{ html_decode($user->instagram) }}">{{ html_decode($user->instagram) }}</a></h4>
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->notable_student_outcome) }}</h4>
                                                     </td>
-
                                                 </tr>
 
                                                 <tr class="odd">
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ __('translate.Skills & Expertise') }}</h4>
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.Expected Commitment') }}</h4>
                                                     </td>
-
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->expected_commitment) }}</h4>
+                                                    </td>
+                                                </tr>
 
+                                                <tr class="odd">
+                                                    <td class="crancy-table__column-2 crancy-table__data-2">
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.Bank Account & Number') }}</h4>
+                                                    </td>
+                                                    <td class="crancy-table__column-2 crancy-table__data-2">
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->bank_account_number) }}</h4>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="odd">
+                                                    <td class="crancy-table__column-2 crancy-table__data-2">
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.bKash Number') }}</h4>
+                                                    </td>
+                                                    <td class="crancy-table__column-2 crancy-table__data-2">
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->bkash_number) }}</h4>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="odd">
+                                                    <td class="crancy-table__column-2 crancy-table__data-2">
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.Personal Statement') }}</h4>
+                                                    </td>
+                                                    <td class="crancy-table__column-2 crancy-table__data-2">
+                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->personal_statement) }}</h4>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="odd">
+                                                    <td class="crancy-table__column-2 crancy-table__data-2">
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.Passport Size Photo') }}</h4>
+                                                    </td>
+                                                    <td class="crancy-table__column-2 crancy-table__data-2">
                                                         <h4 class="crancy-table__product-title">
-                                                            @foreach ($skills_expertises ?? [] as $index => $skills_expertise)
-                                                                <p> <b>{{ $skills_expertise->skill }}</b> : {{ $skills_expertise->expertise }}%</p> <br>
-                                                            @endforeach
+                                                            @if ($user->passport_photo)
+                                                                <a href="{{ asset($user->passport_photo) }}" target="_blank">
+                                                                    <img src="{{ asset($user->passport_photo) }}" alt="Passport Photo" width="100">
+                                                                </a>
+                                                            @endif
                                                         </h4>
                                                     </td>
+                                                </tr>
 
+                                                <tr class="odd">
+                                                    <td class="crancy-table__column-2 crancy-table__data-2">
+                                                        <h4 class="crancy-table__product-title">{{ __('translate.NID Photo') }}</h4>
+                                                    </td>
+                                                    <td class="crancy-table__column-2 crancy-table__data-2">
+                                                        <h4 class="crancy-table__product-title">
+                                                            @if ($user->nid_photo)
+                                                                <a href="{{ asset($user->nid_photo) }}" target="_blank">
+                                                                    <img src="{{ asset($user->nid_photo) }}" alt="NID Photo" width="100">
+                                                                </a>
+                                                            @endif
+                                                        </h4>
+                                                    </td>
                                                 </tr>
 
                                         </tbody>

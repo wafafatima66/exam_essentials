@@ -99,14 +99,13 @@ class CourseController extends Controller
 
         $course_levels = CourseLevel::with('translate')->where('status', 1)->latest()->get();
 
-        $course_languages = CourseLanguage::with('translate')->where('status', 1)->latest()->get();
 
-        $sellers = User::where(['status' => 'enable' , 'is_banned' => 'no', 'is_seller' => 1])->where('email_verified_at', '!=', null)->orderBy('id','desc')->get();
+        $sellers = User::where(['status' => 'enable', 'is_banned' => 'no', 'is_seller' => 1])->where('email_verified_at', '!=', null)->orderBy('id', 'desc')->get();
 
+        // we no longer ask for a language during creation
         return view('course::admin.create', [
             'categories' => $categories,
             'course_levels' => $course_levels,
-            'course_languages' => $course_languages,
             'sellers' => $sellers,
         ]);
 
@@ -125,7 +124,10 @@ class CourseController extends Controller
         $course->offer_price = $request->offer_price;
         $course->category_id = $request->category_id;
         $course->course_level_id = $request->course_level_id;
-        $course->course_language_id = $request->course_language_id;
+        // only set language if provided; field is no longer required
+        if ($request->filled('course_language_id')) {
+            $course->course_language_id = $request->course_language_id;
+        }
         $course->total_lesson = $request->total_lesson;
         $course->total_duration = $request->total_duration;
         $course->approved_by_admin = 'approved';
@@ -133,7 +135,7 @@ class CourseController extends Controller
         $course->save();
 
         $languages = Language::all();
-        foreach($languages as $language){
+        foreach ($languages as $language) {
             $course_translate = new CourseTranslation();
             $course_translate->lang_code = $language->lang_code;
             $course_translate->course_id = $course->id;
@@ -145,8 +147,8 @@ class CourseController extends Controller
 
 
 
-        $notify_message= trans('translate.Basic information added successfully');
-        $notify_message=array('message'=>$notify_message,'alert-type'=>'success');
+        $notify_message = trans('translate.Basic information added successfully');
+        $notify_message = array('message' => $notify_message, 'alert-type' => 'success');
 
         return redirect()->route('admin.course-media', ['course_id' => $course->id, 'req_type' => 'from_create'])->with($notify_message);
     }
@@ -161,9 +163,8 @@ class CourseController extends Controller
 
         $course_levels = CourseLevel::with('translate')->where('status', 1)->latest()->get();
 
-        $course_languages = CourseLanguage::with('translate')->where('status', 1)->latest()->get();
 
-        $sellers = User::where(['status' => 'enable' , 'is_banned' => 'no', 'is_seller' => 1])->where('email_verified_at', '!=', null)->orderBy('id','desc')->get();
+        $sellers = User::where(['status' => 'enable', 'is_banned' => 'no', 'is_seller' => 1])->where('email_verified_at', '!=', null)->orderBy('id', 'desc')->get();
 
 
         $course = Course::findOrFail($id);
@@ -175,7 +176,6 @@ class CourseController extends Controller
             'course_translate' => $course_translate,
             'categories' => $categories,
             'course_levels' => $course_levels,
-            'course_languages' => $course_languages,
             'sellers' => $sellers,
         ]);
     }
@@ -188,13 +188,15 @@ class CourseController extends Controller
 
         $course = Course::findOrFail($id);
 
-        if($request->lang_code == admin_lang()){
+        if ($request->lang_code == admin_lang()) {
             $course->user_id = $request->user_id;
             $course->regular_price = $request->regular_price;
             $course->offer_price = $request->offer_price;
             $course->category_id = $request->category_id;
             $course->course_level_id = $request->course_level_id;
-            $course->course_language_id = $request->course_language_id;
+            if ($request->filled('course_language_id')) {
+                $course->course_language_id = $request->course_language_id;
+            }
             $course->total_lesson = $request->total_lesson;
             $course->total_duration = $request->total_duration;
             $course->save();
@@ -208,17 +210,18 @@ class CourseController extends Controller
         $course_translate->save();
 
 
-        $notify_message= trans('translate.Updated Successfully');
-        $notify_message=array('message'=>$notify_message,'alert-type'=>'success');
+        $notify_message = trans('translate.Updated Successfully');
+        $notify_message = array('message' => $notify_message, 'alert-type' => 'success');
 
-        if($request->req_type && $request->req_type == 'from_create'){
-            return redirect()->route('admin.course-media', ['course_id' => $course->id, 'req_type' => 'from_create'] )->with($notify_message);
+        if ($request->req_type && $request->req_type == 'from_create') {
+            return redirect()->route('admin.course-media', ['course_id' => $course->id, 'req_type' => 'from_create'])->with($notify_message);
         }
 
         return redirect()->back()->with($notify_message);
     }
 
-    public function course_media(Request $request, $course_id){
+    public function course_media(Request $request, $course_id)
+    {
 
         $course = Course::findOrFail($course_id);
 
@@ -228,22 +231,24 @@ class CourseController extends Controller
 
     }
 
-    public function course_media_update(Request $request, $course_id){
+    public function course_media_update(Request $request, $course_id)
+    {
 
         $course = Course::findOrFail($course_id);
 
-        if($request->thumb_image){
+        if ($request->thumb_image) {
             $old_image = $course->thumb_image;
-            $image_name = 'course-thumb'.date('-Y-m-d-h-i-s-').rand(999,9999).'.webp';
-            $image_name ='uploads/custom-images/'.$image_name;
+            $image_name = 'course-thumb' . date('-Y-m-d-h-i-s-') . rand(999, 9999) . '.webp';
+            $image_name = 'uploads/custom-images/' . $image_name;
             Image::make($request->thumb_image)
                 ->encode('webp', 80)
-                ->save(public_path().'/'.$image_name);
+                ->save(public_path() . '/' . $image_name);
             $course->thumb_image = $image_name;
             $course->save();
 
-            if($old_image){
-                if(File::exists(public_path().'/'.$old_image))unlink(public_path().'/'.$old_image);
+            if ($old_image) {
+                if (File::exists(public_path() . '/' . $old_image))
+                    unlink(public_path() . '/' . $old_image);
             }
         }
 
@@ -251,11 +256,11 @@ class CourseController extends Controller
         $course->preview_video_id = $request->preview_video_id;
         $course->save();
 
-        $notify_message= trans('translate.Updated Successfully');
-        $notify_message=array('message'=>$notify_message,'alert-type'=>'success');
+        $notify_message = trans('translate.Updated Successfully');
+        $notify_message = array('message' => $notify_message, 'alert-type' => 'success');
 
-        if($request->req_type && $request->req_type == 'from_create'){
-            return redirect()->route('admin.course-curriculum', ['course_id' => $course->id, 'req_type' => 'from_create'] )->with($notify_message);
+        if ($request->req_type && $request->req_type == 'from_create') {
+            return redirect()->route('admin.course-curriculum', ['course_id' => $course->id, 'req_type' => 'from_create'])->with($notify_message);
         }
 
         return redirect()->back()->with($notify_message);
@@ -264,7 +269,8 @@ class CourseController extends Controller
 
 
 
-    public function course_seo(Request $request, $course_id){
+    public function course_seo(Request $request, $course_id)
+    {
 
         $course = Course::findOrFail($course_id);
 
@@ -274,7 +280,8 @@ class CourseController extends Controller
 
     }
 
-    public function course_seo_update(Request $request, $course_id){
+    public function course_seo_update(Request $request, $course_id)
+    {
 
         $course = Course::findOrFail($course_id);
 
@@ -283,14 +290,15 @@ class CourseController extends Controller
         $course->save();
 
 
-        $notify_message= trans('translate.Updated Successfully');
-        $notify_message=array('message'=>$notify_message,'alert-type'=>'success');
+        $notify_message = trans('translate.Updated Successfully');
+        $notify_message = array('message' => $notify_message, 'alert-type' => 'success');
         return redirect()->back()->with($notify_message);
 
     }
 
 
-    public function submit_for_review(Request $request, $course_id){
+    public function submit_for_review(Request $request, $course_id)
+    {
 
         $course = Course::findOrFail($course_id);
 
@@ -301,7 +309,8 @@ class CourseController extends Controller
     }
 
 
-    public function course_approved($course_id){
+    public function course_approved($course_id)
+    {
 
         $course = Course::findOrFail($course_id);
         $course->approved_by_admin = 'approved';
@@ -311,28 +320,29 @@ class CourseController extends Controller
 
         $user = User::findOrFail($course->user_id);
 
-        try{
+        try {
             $template = EmailTemplate::find(8);
             $message = $template->description;
             $subject = $template->subject;
-            $message = str_replace('{{user_name}}',$user->name,$message);
-            $message = str_replace('{{course_name}}',$course?->translate?->title,$message);
+            $message = str_replace('{{user_name}}', $user->name, $message);
+            $message = str_replace('{{course_name}}', $course?->translate?->title, $message);
 
-            Mail::to($user->email)->send(new CourseReject($message,$subject));
+            Mail::to($user->email)->send(new CourseReject($message, $subject));
 
-        }catch(Exception $ex){
+        } catch (Exception $ex) {
             Log::info($ex->getMessage());
         }
 
 
         $notify_message = trans('translate.Course approval successful');
-        $notify_message = array('message'=>$notify_message,'alert-type'=>'success');
+        $notify_message = array('message' => $notify_message, 'alert-type' => 'success');
         return redirect()->route('admin.courses.index')->with($notify_message);
 
     }
 
 
-    public function course_rejected(Request $request, $course_id){
+    public function course_rejected(Request $request, $course_id)
+    {
 
         $course = Course::findOrFail($course_id);
         $course->approved_by_admin = 'rejected';
@@ -342,22 +352,22 @@ class CourseController extends Controller
 
         EmailHelper::mail_setup();
 
-        try{
+        try {
             $template = EmailTemplate::find(7);
             $message = $template->description;
             $subject = $template->subject;
-            $message = str_replace('{{user_name}}',$user->name,$message);
-            $message = str_replace('{{course_name}}',$course?->translate?->title,$message);
-            $message = str_replace('{{reason}}',$request->reason,$message);
+            $message = str_replace('{{user_name}}', $user->name, $message);
+            $message = str_replace('{{course_name}}', $course?->translate?->title, $message);
+            $message = str_replace('{{reason}}', $request->reason, $message);
 
-            Mail::to($user->email)->send(new CourseReject($message,$subject));
+            Mail::to($user->email)->send(new CourseReject($message, $subject));
 
-        }catch(Exception $ex){
+        } catch (Exception $ex) {
             Log::info($ex->getMessage());
         }
 
         $notify_message = trans('translate.A rejection reason send to instructor mail');
-        $notify_message = array('message'=>$notify_message,'alert-type'=>'success');
+        $notify_message = array('message' => $notify_message, 'alert-type' => 'success');
         return redirect()->route('admin.courses.index')->with($notify_message);
 
     }
@@ -372,15 +382,15 @@ class CourseController extends Controller
 
         $enrollment_count = CourseEnrollmentList::where('course_id', $id)->count();
 
-        if($enrollment_count > 0){
+        if ($enrollment_count > 0) {
             $notify_message = trans('translate.Multiple enrollment created under it, so you can not delete it');
-            $notify_message = array('message'=>$notify_message,'alert-type'=>'error');
+            $notify_message = array('message' => $notify_message, 'alert-type' => 'error');
             return redirect()->back()->with($notify_message);
         }
 
 
         $course_modules = CourseModule::where('course_id', $id)->get();
-        foreach($course_modules as $course_module){
+        foreach ($course_modules as $course_module) {
             CourseModuleLesson::where(['course_module_id' => $course_module->id])->delete();
 
             $course_module->delete();
@@ -392,22 +402,24 @@ class CourseController extends Controller
         CourseReview::where('course_id', $course->id)->delete();
 
         $old_image = $course->thumb_image;
-        if($old_image){
-            if(File::exists(public_path().'/'.$old_image))unlink(public_path().'/'.$old_image);
+        if ($old_image) {
+            if (File::exists(public_path() . '/' . $old_image))
+                unlink(public_path() . '/' . $old_image);
         }
 
         $support_tickets = SupportTicket::where('course_id', $course->id)->latest()->get();
 
-        foreach($support_tickets as $support_ticket){
+        foreach ($support_tickets as $support_ticket) {
             $ticket_messages = SupportTicketMessage::with('documents')->where('support_ticket_id', $support_ticket->id)->get();
 
-            foreach($ticket_messages as $ticket_message){
+            foreach ($ticket_messages as $ticket_message) {
 
                 $documents = MessageDocument::where('message_id', $ticket_message->id)->where('model_name', 'SupportTicketMessage')->get();
-                foreach($documents as $document){
+                foreach ($documents as $document) {
                     $exist_file_name = $document->file_name;
-                    if($exist_file_name){
-                        if(File::exists(public_path('uploads/custom-images').'/'.$exist_file_name))unlink(public_path('uploads/custom-images').'/'.$exist_file_name);
+                    if ($exist_file_name) {
+                        if (File::exists(public_path('uploads/custom-images') . '/' . $exist_file_name))
+                            unlink(public_path('uploads/custom-images') . '/' . $exist_file_name);
                     }
 
                     $document->delete();
@@ -422,7 +434,7 @@ class CourseController extends Controller
         $course->delete();
 
         $notify_message = trans('translate.Course deleted successful');
-        $notify_message = array('message'=>$notify_message,'alert-type'=>'success');
+        $notify_message = array('message' => $notify_message, 'alert-type' => 'success');
         return redirect()->back()->with($notify_message);
 
 
@@ -430,9 +442,10 @@ class CourseController extends Controller
     }
 
 
-    public function setup_language($lang_code){
+    public function setup_language($lang_code)
+    {
         $course_translates = CourseTranslation::where('lang_code', admin_lang())->get();
-        foreach($course_translates as $course_translate){
+        foreach ($course_translates as $course_translate) {
             $new_translate = new CourseTranslation();
             $new_translate->lang_code = $lang_code;
             $new_translate->course_id = $course_translate->course_id;

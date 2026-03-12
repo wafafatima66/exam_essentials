@@ -48,10 +48,6 @@
                                                 </th>
 
                                                 <th class="crancy-table__column-2 crancy-table__h2 sorting" >
-                                                    {{ __('translate.Experience') }}
-                                                </th>
-
-                                                <th class="crancy-table__column-2 crancy-table__h2 sorting" >
                                                     {{ __('translate.Status') }}
                                                 </th>
 
@@ -78,12 +74,6 @@
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
                                                         <h4 class="crancy-table__product-title">{{ html_decode($user->email) }}</h4>
                                                     </td>
-
-                                                    <td class="crancy-table__column-2 crancy-table__data-2">
-                                                        <h4 class="crancy-table__product-title">{{ html_decode($user->instructor_experience) }} {{ __('translate.Years') }}</h4>
-                                                    </td>
-
-
 
                                                     <td class="crancy-table__column-2 crancy-table__data-2">
                                                         @if ($user->instructor_joining_request == 'approved')

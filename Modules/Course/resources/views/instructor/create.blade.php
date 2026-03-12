@@ -94,11 +94,6 @@
                                                 </div>
                                             </div>
 
-                                            @php
-                                                $default_course_language_id = $course_languages->first()?->id ?? null;
-                                            @endphp
-
-                                            <input type="hidden" name="course_language_id" value="{{ $default_course_language_id }}">
 
                                             <div class="col-md-6">
                                                 <div class="crancy__item-form--group mg-top-form-20">

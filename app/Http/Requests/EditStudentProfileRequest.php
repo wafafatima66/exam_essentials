@@ -22,10 +22,10 @@ class EditStudentProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
-            'address' => 'required|max:255',
-            'phone' => 'required|max:15',
-            'gender' => 'required|max:10',
+            'name' => 'nullable|max:255',
+            'address' => 'nullable|max:255',
+            'phone' => 'nullable|max:15',
+            'gender' => 'nullable|max:10',
         ];
     }
 

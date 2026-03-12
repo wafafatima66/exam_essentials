@@ -48,7 +48,7 @@
 
                 </a>
             </li>
-            <li class="menu-hide {{ Route::is('instructor.instructor-profile') ? 'active' : '' }}"><a class="collapsed" href="{{ route('instructor.instructor-profile') }}">
+            {{-- <li class="{{ Route::is('instructor.instructor-profile') ? 'active' : '' }}"><a class="collapsed" href="{{ route('instructor.instructor-profile') }}">
                 <span class="menu-bar__text">
                     <span class="crancy-menu-icon crancy-svg-icon__v1">
 
@@ -66,7 +66,7 @@
                 </span>
 
                 </a>
-            </li>
+            </li> --}}
             <li class="{{ Route::is('instructor.change-password') ? 'active' : '' }}"><a class="collapsed" href="{{ route('instructor.change-password') }}">
                 <span class="menu-bar__text">
                     <span class="crancy-menu-icon crancy-svg-icon__v1">
@@ -82,7 +82,7 @@
                 </a>
             </li>
 
-            <li class="menu-hide {{ Route::is('instructor.notice-board.*') ? 'active' : '' }}"><a class="collapsed" href="{{ route('instructor.notice-board.index') }}">
+            <li class="{{ Route::is('instructor.notice-board.*') ? 'active' : '' }}"><a class="collapsed" href="{{ route('instructor.notice-board.index') }}">
                 <span class="menu-bar__text">
                     <span class="crancy-menu-icon crancy-svg-icon__v1">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +100,7 @@
             </li>
 
 
-            <li class="menu-hide {{ Route::is('instructor.teacher-supports') || Route::is('instructor.teacher-support') ? 'active' : '' }}"><a class="collapsed" href="{{ route('instructor.teacher-supports') }}">
+            <li class="{{ Route::is('instructor.teacher-supports') || Route::is('instructor.teacher-support') ? 'active' : '' }}"><a class="collapsed" href="{{ route('instructor.teacher-supports') }}">
                 <span class="menu-bar__text">
                     <span class="crancy-menu-icon crancy-svg-icon__v1">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,4 +1,4 @@
-@extends('layout_inner_page')
+@extends('layout')
 
 @section('title')
     <title>{{ __('translate.Sign In') }}</title>
@@ -6,52 +6,7 @@
 
 @section('front-content')
 
-@push('style_section')
-<style>
-    .role-selector {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 30px;
-    }
-    .role-option {
-        flex: 1;
-        position: relative;
-    }
-    .role-option input[type="radio"] {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 100%;
-        width: 100%;
-        z-index: 1;
-    }
-    .role-option label {
-        display: block;
-        padding: 15px;
-        border: 2px solid #e5e5e5;
-        border-radius: 10px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-weight: 600;
-        color: #555;
-        background: #fff;
-    }
-    .role-option input[type="radio"]:checked + label {
-        border-color: var(--td-primary-color, #0A58CA);
-        background-color: rgba(10, 88, 202, 0.05);
-        color: var(--td-primary-color, #0A58CA);
-    }
-    .role-option label:hover {
-        border-color: #ccc;
-    }
-    .role-option i {
-        font-size: 24px;
-        display: block;
-        margin-bottom: 8px;
-    }
-</style>
-@endpush
+
 
 @include('breadcrumb')
 
@@ -72,31 +27,17 @@
                     @csrf
                     <h2 class="td_fs_36 td_mb_20">{{ __('translate.Sign In') }}</h2>
                     <hr>
+                    @if (Session::has('message'))
+                        <div class="alert alert-{{ Session::get('alert-type', 'info') == 'success' ? 'success' : (Session::get('alert-type') == 'error' ? 'danger' : 'info') }} alert-dismissible fade show mb-4" role="alert">
+                            {{ Session::get('message') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                     <div class="td_height_30 td_height_lg_30"></div>
 
-                    <div class="td_mb_30">
-                        <div class="td_semibold td_accent_color td_mb_10">{{ __('translate.Login as') }}:</div>
-                        <div class="role-selector">
-                            <div class="role-option">
-                                <input type="radio" id="student" name="role" value="student" checked>
-                                <label for="student">
-                                    <i class="fa-solid fa-user-graduate"></i>
-                                    {{ __('translate.Student') }}
-                                </label>
-                            </div>
-                            <div class="role-option">
-                                <input type="radio" id="instructor" name="role" value="instructor">
-                                <label for="instructor">
-                                    <i class="fa-solid fa-chalkboard-user"></i>
-                                    {{ __('translate.Instructor') }}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
 
                     <input type="email" class="td_form_field td_mb_30 td_medium td_white_bg" placeholder="{{ __('translate.Email') }} *" name="email" value="{{ old('email') }}">
                     <input type="password" class="td_form_field td_mb_10 td_medium td_white_bg" placeholder="{{ __('translate.Password') }} *" name="password">
-                    <input type="hidden" name="role" id="role_input" value="student">
 
                     <div class="td_form_card_text_2 td_mb_30">
                         <div><a href="{{ route('student.forget-password') }}" class="td_semibold td_accent_color">{{ __('translate.Forgot Password?') }}</a></div>
@@ -131,27 +72,6 @@
                                         href="{{ route('student.register') }}">{{ __('translate.Sign Up') }}</a></p>
                             </div>
                         </div>
-                        <div class="d-flex gap-3 justify-content-center align-items-center mt-4">
-                            <div class="edc-line-sperator"></div>
-                            <p class="td_fs_20 mb-0 td_medium ">{{ __('translate.or sign up with') }}</p>
-                            <div class="edc-line-sperator"></div>
-                        </div>
-
-                        <div class="td_form_social td_fs_20">
-
-                            @if ($general_setting->is_gmail == 1)
-                                <a href="{{ route('student.login-google') }}" class="td_center">
-                                    <i class="fa-brands fa-google"></i>
-                                </a>
-                            @endif
-
-                            @if ($general_setting->is_facebook == 1)
-                                <a href="{{ route('student.login-facebook') }}" class="td_center">
-                                    <i class="fa-brands fa-facebook-f"></i>
-                                </a>
-                            @endif
-
-                        </div>
                     </div>
 
                 </form>
@@ -163,20 +83,16 @@
 </section>
 <!-- End Signin Section -->
 
+<!-- Start Signup Section -->
+
+
 @endsection
 
   @push('js_section')
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const roleRadios = document.querySelectorAll('input[name="role"]');
-            const roleInput = document.getElementById('role_input');
-
-            roleRadios.forEach(radio => {
-                radio.addEventListener('change', function () {
-                    roleInput.value = this.value;
-                });
-            });
+            // No JS needed for role selection; radios have default value
         });
     </script>
 @endpush

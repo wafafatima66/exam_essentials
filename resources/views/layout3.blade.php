@@ -107,99 +107,20 @@
                   <div class="td_nav_list_wrap">
                       <div class="td_nav_list_wrap_in">
                           <ul class="td_nav_list">
-                              @if ($general_setting->selected_theme == 'all_theme')
-                                  <li class="menu-item-has-children">
-                                      <a href="{{ route('home') }}">{{ __('translate.Home') }}</a>
-                                      <ul>
-
-                                          <li>
-                                              <a href="{{ route('home', ['theme' => 'one']) }}"><span>{{ __('translate.Online Educations') }}</span></a
-                                              >
-                                          </li>
-
-                                          <li>
-                                              <a href="{{ route('home', ['theme' => 'two']) }}" ><span>{{ __('translate.Education') }}</span></a
-                                              >
-                                          </li>
-
-                                          <li>
-                                              <a href="{{ route('home', ['theme' => 'three']) }}" ><span>{{ __('translate.KinderGarden') }}</span></a
-                                              >
-                                          </li>
-
-                                          <li>
-                                              <a href="{{ route('home', ['theme' => 'four']) }}" ><span>{{ __('translate.University') }}</span></a
-                                              >
-                                          </li>
-
-                                          <li>
-                                              <a href="{{ route('home', ['theme' => 'five']) }}" ><span>{{ __('translate.Modern School') }}</span></a
-                                              >
-                                          </li>
-
-                                          <li>
-                                              <a href="{{ route('home', ['theme' => 'six']) }}" ><span>{{ __('translate.Online Education') }}</span></a
-                                              >
-                                          </li>
-
-
-                                      </ul>
-                                  </li>
+                              <li><a href="{{ route('home') }}">Home</a></li>
+                              <li><a href="{{ route('courses', ['search' => 'Edexel A Level']) }}">Edexel a level</a></li>
+                              <li><a href="{{ route('courses', ['search' => 'Cambridge A Level']) }}">Cambridge a level</a></li>
+                              <li><a href="{{ route('courses', ['search' => 'Edexel O Level']) }}">Edexel 0 level subject</a></li>
+                              <li><a href="{{ route('courses', ['search' => 'Cambridge O Level']) }}">Cambridge 0 level</a></li>
+                              <li><a href="{{ route('courses', ['search' => 'A Level']) }}">A level pricing</a></li>
+                              <li><a href="{{ route('courses', ['search' => 'O Level']) }}">O level pricing</a></li>
+                              <li><a href="{{ route('courses') }}">Store</a></li>
+                              @guest('web')
+                                  <li><a href="{{ route('student.login') }}">Login</a></li>
+                                  <li><a href="{{ route('student.register') }}">Signup</a></li>
                               @else
-                                  <li><a href="{{ route('home') }}">{{ __('translate.Home') }}</a></li>
-                              @endif
-
-
-                              @if ($general_setting->course_theme == 'with_sidebar')
-                                  <li><a href="{{ route('courses', ['page_view' => 'sidebar_grid_view']) }}">{{ __('translate.Courses') }}</a></li>
-                              @elseif ($general_setting->course_theme == 'without_sidebar')
-                                  <li><a href="{{ route('courses', ['page_view' => 'grid']) }}">{{ __('translate.Courses') }}</a></li>
-                              @else
-                                  <li class="menu-item-has-children">
-                                      <a href="{{ route('courses') }}">{{ __('translate.Courses') }}</a>
-                                      <ul>
-                                          <li><a href="{{ route('courses', ['page_view' => 'grid']) }}">{{ __('translate.Courses Grid View') }}</a></li>
-                                          <li><a href="{{ route('courses', ['page_view' => 'list']) }}">{{ __('translate.Courses List View') }}</a></li>
-                                          <li><a href="{{ route('courses', ['page_view' => 'sidebar_grid_view']) }}">{{ __('translate.Courses Grid With Sidebar') }}</a></li>
-                                      </ul>
-                                  </li>
-                              @endif
-
-                              <li><a href="{{ route('instructors') }}">{{ __('translate.Instructors') }}</a></li>
-
-
-                              @if ($general_setting->blog_theme == 'with_sidebar')
-                                  <li><a href="{{ route('blogs', ['page_view' => 'blogs_with_sidebar']) }}">{{ __('translate.Blogs') }}</a></li>
-                              @elseif ($general_setting->blog_theme == 'without_sidebar')
-                                  <li><a href="{{ route('blogs') }}">{{ __('translate.Blogs') }}</a></li>
-                              @else
-                                  <li class="menu-item-has-children">
-                                      <a href="javascript:;">{{ __('translate.Blogs') }}</a>
-                                      <ul>
-                                          <li><a href="{{ route('blogs') }}">{{ __('translate.Blogs') }}</a></li>
-                                          <li><a href="{{ route('blogs', ['page_view' => 'blogs_with_sidebar']) }}">{{ __('translate.Blog With Sidebar') }}</a></li>
-                                      </ul>
-                                  </li>
-                              @endif
-
-
-
-                              <li class="menu-item-has-children">
-                                  <a href="javascript:;">{{ __('translate.Pages') }}</a>
-                                  <ul>
-                                      <li><a href="{{ route('about-us') }}">{{ __('translate.About Us') }}</a></li>
-                                      <li><a href="{{ route('privacy-policy') }}"  >{{ __('translate.Privacy Policy') }}</a> </li>
-                                      <li><a href="{{ route('terms-conditions') }}">{{ __('translate.Terms & Conditions') }}</a></li>
-                                      <li><a href="{{ route('faq') }}">{{ __('translate.FAQ') }}</a></li>
-                                      @foreach ($custom_pages as $custom_page)
-                                          <li><a href="{{ route('custom-page', $custom_page->slug) }}">{{ $custom_page->page_name }}</a> </li>
-                                      @endforeach
-
-                                  </ul>
-                              </li>
-
-
-                              <li><a href="{{ route('contact-us') }}">{{ __('translate.Contact Us') }}</a></li>
+                                  <li><a href="{{ Auth::guard('web')->user()->is_seller == 1 ? route('instructor.dashboard') : route('student.dashboard') }}">Dashboard</a></li>
+                              @endguest
 
                           </ul>
                       </div>

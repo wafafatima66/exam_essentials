@@ -17,7 +17,7 @@
                 <div class="col-12">
                     <div class="crancy-body">
                         <!-- Dashboard Inner -->
-                        <div class="crancy-dsinner">
+                        {{-- <div class="crancy-dsinner">
                             <div class="row">
                                 <div class="col-12 mg-top-30">
                                     <!-- Product Card -->
@@ -60,7 +60,7 @@
                                     <!-- End Product Card -->
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- End Dashboard Inner -->
                     </div>
                 </div>

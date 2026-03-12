@@ -65,14 +65,12 @@ class LoginController extends Controller
         $rules = [
             'email' => 'required',
             'password' => 'required',
-            'role' => 'required|in:student,instructor',
             'g-recaptcha-response' => new Captcha()
         ];
 
         $custom_error = [
             'email.required' => trans('translate.Email is required'),
             'password.required' => trans('translate.Password is required'),
-            'role.required' => trans('translate.Please select a role'),
         ];
 
         $this->validate($request, $rules, $custom_error);

@@ -13,43 +13,42 @@ class CourseBasicInfoRequest extends FormRequest
     {
         if ($this->isMethod('post')) {
             $rules = [
-                'user_id'=>'required|exists:users,id',
-                'title'=>'required|max:255',
-                'slug'=>'required|unique:courses|max:255',
-                'regular_price'=>'required|numeric',
-                'offer_price'=>'nullable|numeric',
-                'category_id'=>'required|exists:categories,id',
-                'course_level_id'=>'required|exists:course_levels,id',
-                'course_language_id'=>'required|exists:course_languages,id',
-                'total_lesson'=>'required|numeric',
-                'total_duration'=>'required|numeric',
-                'short_description'=>'required',
-                'description'=>'required',
+                'user_id' => 'required|exists:users,id',
+                'title' => 'required|max:255',
+                'slug' => 'required|unique:courses|max:255',
+                'regular_price' => 'required|numeric',
+                'offer_price' => 'nullable|numeric',
+                'category_id' => 'required|exists:categories,id',
+                'course_level_id' => 'required|exists:course_levels,id',
+                'total_lesson' => 'required|numeric',
+                'total_duration' => 'required|numeric',
+                'short_description' => 'required',
+                'description' => 'required',
             ];
         }
 
         if ($this->isMethod('put')) {
-            if($this->request->get('lang_code') == admin_lang()){
+            if ($this->request->get('lang_code') == admin_lang()) {
                 $rules = [
 
-                    'user_id'=>'required|exists:users,id',
-                    'title'=>'required|max:255',
-                    'regular_price'=>'required|numeric',
-                    'offer_price'=> 'nullable|numeric',
-                    'category_id'=>'required|exists:categories,id',
-                    'course_level_id'=>'required|exists:course_levels,id',
-                    'course_language_id'=>'required|exists:course_languages,id',
-                    'total_lesson'=>'required|numeric',
-                    'total_duration'=>'required|numeric',
-                    'short_description'=>'required',
-                    'description'=>'required',
+                    'user_id' => 'required|exists:users,id',
+                    'title' => 'required|max:255',
+                    'regular_price' => 'required|numeric',
+                    'offer_price' => 'nullable|numeric',
+                    'category_id' => 'required|exists:categories,id',
+                    // 'course_level_id'=>'required|exists:course_levels,id',
+
+                    'total_lesson' => 'required|numeric',
+                    'total_duration' => 'required|numeric',
+                    'short_description' => 'required',
+                    'description' => 'required',
 
                 ];
-            }else{
+            } else {
                 $rules = [
-                    'title'=>'required',
-                    'short_description'=>'required',
-                    'description'=>'required',
+                    'title' => 'required',
+                    'short_description' => 'required',
+                    'description' => 'required',
                 ];
             }
         }
@@ -68,7 +67,7 @@ class CourseBasicInfoRequest extends FormRequest
 
     public function messages(): array
     {
-        return  [
+        return [
             'user_id.required' => trans('translate.Instructor is required'),
             'user_id.exists' => trans('translate.The selected instructor does not exist'),
             'title.required' => trans('translate.The course title is required'),
@@ -83,8 +82,6 @@ class CourseBasicInfoRequest extends FormRequest
             'category_id.exists' => trans('translate.The selected category does not exist'),
             'course_level_id.required' => trans('translate.Course level is required'),
             'course_level_id.exists' => trans('translate.The selected course level does not exist'),
-            'course_language_id.required' => trans('translate.Course language is required'),
-            'course_language_id.exists' => trans('translate.The selected course language does not exist'),
             'total_lesson.required' => trans('translate.Total lesson is required'),
             'total_lesson.numeric' => trans('translate.Total lesson must be a number'),
             'total_duration.required' => trans('translate.Total duration is required'),

@@ -84,14 +84,13 @@ class RegisterController extends Controller
             'status' => 'enable',
             'is_banned' => 'no',
             'password' => Hash::make($request->password),
-            'email_verified_at' => date('Y-m-d H:i:s'),
-            'verification_token' => null,
+            'email_verified_at' => null,
+            'verification_token' => Str::random(50),
         ]);
 
-        /*
         EmailHelper::mail_setup();
 
-        $verification_link = route('student.register-verification') . '?verification_link=' . $user->verification_token . '&email=' . $user->email;
+        $verification_link = route('student.register-verification', ['verification_link' => $user->verification_token, 'email' => $user->email]);
         $verification_link = '<a href="' . $verification_link . '">' . $verification_link . '</a>';
 
         try {
@@ -105,10 +104,8 @@ class RegisterController extends Controller
         } catch (Exception $ex) {
             Log::info('Register mail : ' . $ex->getMessage());
         }
-        */
 
-
-        $notify_message = 'Account created successfully';
+        $notify_message = 'A verification link has been sent to your email, please verify your email to login';
         $notify_message = array('message' => $notify_message, 'alert-type' => 'success');
         return redirect()->back()->with($notify_message);
 
@@ -116,7 +113,7 @@ class RegisterController extends Controller
 
     public function register_verification(Request $request)
     {
-        $user = User::where('verification_token', $request->verification_link)->where('email', $request->email)->first();
+        $user = User::where('verification_token', $request->verification_link)->where('email', 'LIKE', $request->email)->first();
         if ($user) {
 
             if ($user->email_verified_at != null) {
@@ -191,14 +188,13 @@ class RegisterController extends Controller
             'username' => Str::slug($request->first_name . ' ' . $request->last_name) . '-' . date('Ymdhis'),
             'status' => 'enable',
             'is_banned' => 'no',
-            'email_verified_at' => date('Y-m-d H:i:s'),
-            'verification_token' => null,
+            'email_verified_at' => null,
+            'verification_token' => Str::random(50),
         ]);
 
-        /*
         EmailHelper::mail_setup();
 
-        $verification_link = route('student.register-verification') . '?verification_link=' . $user->verification_token . '&email=' . $user->email;
+        $verification_link = route('student.register-verification', ['verification_link' => $user->verification_token, 'email' => $user->email]);
         $verification_link = '<a href="' . $verification_link . '">' . $verification_link . '</a>';
 
         try {
@@ -212,60 +208,89 @@ class RegisterController extends Controller
         } catch (Exception $ex) {
             Log::info('Register mail : ' . $ex->getMessage());
         }
-        */
 
-        $notify_message = trans('translate.Account created successfully');
+        $notify_message = 'A verification link has been sent to your email, please verify your email to login';
         $notify_message = array('message' => $notify_message, 'alert-type' => 'success');
-        return redirect()->route('student.login')->with($notify_message);
+        // show verification notice on registration page rather than redirecting to login
+        return redirect()->route('student.register')->with($notify_message);
     }
 
     public function registerInstructor(Request $request)
     {
         $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'father_name' => ['required', 'string', 'max:255'],
-            'mother_name' => ['required', 'string', 'max:255'],
-            'nid' => ['nullable', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
+            'guardian_phone' => ['required', 'string', 'max:255'],
             'date_of_birth' => ['required', 'date'],
-            'education_ssc' => ['nullable', 'string', 'max:255'],
-            'education_hsc' => ['nullable', 'string', 'max:255'],
-            'education_bachelor' => ['nullable', 'string', 'max:255'],
-            'education_master' => ['nullable', 'string', 'max:255'],
-            'education_phd' => ['nullable', 'string', 'max:255'],
+            'school_name' => ['nullable', 'string', 'max:255'],
+            'college_name' => ['nullable', 'string', 'max:255'],
+            'education_qualification' => ['nullable', 'string', 'max:255'],
+            'o_level_results' => ['nullable', 'string', 'max:255'],
+            'a_level_results' => ['nullable', 'string', 'max:255'],
+            'current_university_semester' => ['nullable', 'string', 'max:255'],
+            'teaching_experience' => ['nullable', 'string'],
+            'educational_achievements' => ['nullable', 'string'],
+            'notable_student_outcome' => ['nullable', 'string'],
+            'expected_commitment' => ['nullable', 'string', 'max:255'],
+            'bank_account_number' => ['nullable', 'string', 'max:255'],
+            'bkash_number' => ['nullable', 'string', 'max:255'],
+            'personal_statement' => ['nullable', 'string'],
+            'passport_photo' => ['nullable', 'image', 'max:2048'],
+            'nid_photo' => ['nullable', 'image', 'max:2048'],
         ]);
 
-        $user = User::create([
-            'name' => $request->first_name . ' ' . $request->last_name,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'father_name' => $request->father_name,
-            'mother_name' => $request->mother_name,
-            'nid' => $request->nid,
-            'phone' => $request->phone,
-            'dob' => $request->date_of_birth,
-            'education_ssc' => $request->education_ssc,
-            'education_hsc' => $request->education_hsc,
-            'education_bachelor' => $request->education_bachelor,
-            'education_masters' => $request->education_master,
-            'education_phd' => $request->education_phd,
-            'role' => 'instructor',
-            'username' => Str::slug($request->first_name . ' ' . $request->last_name) . '-' . date('Ymdhis'),
-            'status' => 'enable',
-            'is_banned' => 'no',
-            'email_verified_at' => date('Y-m-d H:i:s'),
-            'verification_token' => null,
-        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->phone = $request->phone;
+        $user->guardian_phone = $request->guardian_phone;
+        $user->dob = $request->date_of_birth;
+        $user->school_name = $request->school_name;
+        $user->college_name = $request->college_name;
+        $user->education_qualification = $request->education_qualification;
+        $user->o_level_results = $request->o_level_results;
+        $user->a_level_results = $request->a_level_results;
+        $user->current_university_semester = $request->current_university_semester;
+        $user->teaching_experience = $request->teaching_experience;
+        $user->educational_achievements = $request->educational_achievements;
+        $user->notable_student_outcome = $request->notable_student_outcome;
+        $user->expected_commitment = $request->expected_commitment;
+        $user->bank_account_number = $request->bank_account_number;
+        $user->bkash_number = $request->bkash_number;
+        $user->personal_statement = $request->personal_statement;
+        $user->role = 'instructor';
+        $user->username = Str::slug($request->name) . '-' . date('Ymdhis');
+        $user->status = 'enable';
+        $user->is_banned = 'no';
+        $user->is_seller = 0;
+        $user->instructor_joining_request = 'pending';
+        $user->email_verified_at = null;
+        $user->verification_token = Str::random(50);
 
-        /*
+        if ($request->hasFile('passport_photo')) {
+            $extention = $request->passport_photo->getClientOriginalExtension();
+            $image_name = 'passport-photo' . date('-Y-m-d-h-i-s-') . rand(999, 9999) . '.' . $extention;
+            $image_name = 'uploads/custom-files/' . $image_name;
+            $request->passport_photo->move(public_path('uploads/custom-files/'), $image_name);
+            $user->passport_photo = $image_name;
+        }
+
+        if ($request->hasFile('nid_photo')) {
+            $extention = $request->nid_photo->getClientOriginalExtension();
+            $image_name = 'nid-photo' . date('-Y-m-d-h-i-s-') . rand(999, 9999) . '.' . $extention;
+            $image_name = 'uploads/custom-files/' . $image_name;
+            $request->nid_photo->move(public_path('uploads/custom-files/'), $image_name);
+            $user->nid_photo = $image_name;
+        }
+
+        $user->save();
+
         EmailHelper::mail_setup();
 
-        $verification_link = route('student.register-verification') . '?verification_link=' . $user->verification_token . '&email=' . $user->email;
+        $verification_link = route('student.register-verification', ['verification_link' => $user->verification_token, 'email' => $user->email]);
         $verification_link = '<a href="' . $verification_link . '">' . $verification_link . '</a>';
 
         try {
@@ -279,11 +304,14 @@ class RegisterController extends Controller
         } catch (Exception $ex) {
             Log::info('Register mail : ' . $ex->getMessage());
         }
-        */
 
-        $notify_message = trans('translate.Account created successfully');
-        $notify_message = array('message' => $notify_message, 'alert-type' => 'success');
-        return redirect()->route('student.login')->with($notify_message);
+        return redirect()->route('instructor.pending.approval');
+    }
+
+    public function instructorPendingApproval()
+    {
+        $breadcrumb_title = trans('translate.Registration Pending');
+        return view('auth.instructor_pending', compact('breadcrumb_title'));
     }
 
 

@@ -1056,6 +1056,22 @@
   'Switch to Instructor Portal' => 'Switch to Instructor Portal',
   'Switch to Student Portal' => 'Switch to Student Portal',
   'Download Certificate' => 'Download Certificate',
-
+  'Guardian Phone' => 'অভিভাবকের ফোন নম্বর',
+  'School Name' => 'স্কুলের নাম',
+  'College Name' => 'কলেজের নাম',
+  'Education Qualification' => 'শিক্ষাগত যোগ্যতা',
+  'O-level Results' => 'ও-লেভেল ফলাফল',
+  'A-level Results' => 'এ-লেভেল ফলাফল',
+  'Current University/Semester' => 'বর্তমান বিশ্ববিদ্যালয়/সেমিস্টার',
+  'Teaching Experience' => 'শিক্ষাদানের অভিজ্ঞতা',
+  'Achievements & Awards' => 'সাফল্য ও পুরস্কার',
+  'Notable Student Outcome' => 'উল্লেখযোগ্য শিক্ষার্থীর ফলাফল',
+  'Expected Commitment' => 'প্রত্যাশিত প্রতিশ্রুতি',
+  'Bank Account & Number' => 'ব্যাংক অ্যাকাউন্ট এবং নম্বর',
+  'bKash Number' => 'বিকাশ নম্বর',
+  'Personal Statement' => 'ব্যক্তিগত বিবৃতি',
+  'Passport Size Photo' => 'পাসপোর্ট সাইজ ছবি',
+  'NID Photo' => 'এনআইডি ছবি',
+  'Instructor registration successful, please wait for admin approval' => 'প্রশিক্ষক নিবন্ধন সফল হয়েছে, অনুগ্রহ করে অ্যাডমিন অনুমোদনের জন্য অপেক্ষা করুন',
 );
  ?>

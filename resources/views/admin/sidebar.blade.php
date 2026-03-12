@@ -82,6 +82,7 @@
                         <li><a href="{{ route('admin.courses.index') }}"><span class="menu-bar__text"><span
                                         class="menu-bar__name">{{ __('translate.Course List') }}</span></span></a></li>
 
+                        @if(Auth::guard('admin')->user()->admin_type !== 'restricted_admin')
                         <li><a href="{{ route('admin.active-course') }}"><span class="menu-bar__text"><span
                                         class="menu-bar__name">{{ __('translate.Active Course') }}</span></span></a></li>
 
@@ -90,12 +91,13 @@
 
                         <li><a href="{{ route('admin.rejected-course') }}"><span class="menu-bar__text"><span
                                         class="menu-bar__name">{{ __('translate.Rejected Course') }}</span></span></a></li>
+                        @endif
 
                         <li><a href="{{ route('admin.courselevel.index') }}"><span class="menu-bar__text"><span
                                         class="menu-bar__name">{{ __('translate.Course Level') }}</span></span></a></li>
 
-                        <li><a href="{{ route('admin.courselanguage.index') }}"><span class="menu-bar__text"><span
-                                        class="menu-bar__name">{{ __('translate.Course Language') }}</span></span></a></li>
+                        {{-- <li><a href="{{ route('admin.courselanguage.index') }}"><span class="menu-bar__text"><span
+                                        class="menu-bar__name">{{ __('translate.Course Language') }}</span></span></a></li> --}}
 
 
                     </ul>
@@ -344,15 +346,14 @@
                                         class="menu-bar__name">{{ __('translate.FAQ') }}</span></span></a></li>
 
 
-                        <li><a href="{{ route('admin.custom-page.index') }}"><span class="menu-bar__text"><span
-                                        class="menu-bar__name">{{ __('translate.Custom Page') }}</span></span></a></li>
+                        {{-- <li><a href="{{ route('admin.custom-page.index') }}"><span class="menu-bar__text"><span
+                                        class="menu-bar__name">{{ __('translate.Custom Page') }}</span></span></a></li> --}}
 
                     </ul>
                 </div>
             </li>
 
 
-            @if(Auth::guard('admin')->user()->admin_type !== 'restricted_admin')
             <li class="{{ Route::is('admin.front-end.frontend-section') || Route::is('admin.front-end.section') || Route::is('admin.testimonial.*') || Route::is('admin.partner.*') || Route::is('admin.footer') ? 'active' : '' }}">
                 <a href="#!" class="collapsed" data-bs-toggle="collapse" data-bs-target="#menu-item__for_section"><span
                         class="menu-bar__text">
@@ -375,8 +376,10 @@
                     <ul class="menu-bar__one-dropdown">
 
 
+                        @if(Auth::guard('admin')->user()->admin_type !== 'restricted_admin')
                         <li><a href="{{ route('admin.front-end.frontend-section') }}"><span class="menu-bar__text"><span
                                         class="menu-bar__name">{{ __('translate.Frontend Section') }}</span></span></a></li>
+                        @endif
 
 
                         <li><a href="{{ route('admin.footer', ['lang_code' => admin_lang()]) }}"><span
@@ -387,13 +390,14 @@
                         <li><a href="{{ route('admin.testimonial.index') }}"><span class="menu-bar__text"><span
                                         class="menu-bar__name">{{ __('translate.Testimonial') }}</span></span></a></li>
 
+                        @if(Auth::guard('admin')->user()->admin_type !== 'restricted_admin')
                         <li><a href="{{ route('admin.partner.index') }}"><span class="menu-bar__text"><span
                                         class="menu-bar__name">{{ __('translate.Partner') }}</span></span></a></li>
+                        @endif
 
                     </ul>
                 </div>
             </li>
-            @endif
 
 
             @if(Auth::guard('admin')->user()->admin_type !== 'restricted_admin')

@@ -1,6 +1,5 @@
 
-
-@extends('layout_inner_page')
+@extends('layout')
 @section('title')
     <title>{{ $instructor->name }}</title>
 @endsection
@@ -16,24 +15,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-lg-5">
-                    <div class="instructors_details_thumb">
-                        @if ($instructor?->image)
-                            <img src="{{ asset($instructor?->image) }}" alt="" />
-                        @else
-                            <img src="{{ asset($general_setting->default_avatar) }}" alt=""/>
-                        @endif
-                    </div>
-                    <ul class="instructors_details_contact">
-                        <li>
-                            <a href="tel:{{ html_decode($instructor->phone) }}">
-                                <span class="icon">
-                                    @include('svg.instructor_phone')
-                                </span>
-
-                                {{ html_decode($instructor->phone) }}
-                            </a>
-                        </li>
-
+                    <div class="td_white_bg td_radius_10 p-4 shadow-sm">
+                        <div class="instructors_details_thumb mb-4">
+                            @if ($instructor?->image)
+                                <img src="{{ asset($instructor?->image) }}" alt="" class="w-100 td_radius_10" />
+                            @else
+                                <img src="{{ asset($general_setting->default_avatar) }}" alt="" class="w-100 td_radius_10"/>
+                            @endif
+                        </div>
+                        <h4 class="td_fs_24 td_semibold td_heading_color mb-3">{{ __('translate.Contact Information') }}</h4>
+                        <ul class="instructors_details_contact mb-4">
                         <li>
                             <a href="mailto:{{ html_decode($instructor->email) }}">
                                 <span class="icon">
@@ -48,22 +39,27 @@
                             </a>
                         </li>
 
+                        @if($instructor->phone)
+                        <li>
+                            <a href="tel:{{ html_decode($instructor->phone) }}">
+                                <span class="icon">
+                                    <i class="fa-solid fa-phone" style="color: #6440FB;"></i>
+                                </span>
+                                {{ html_decode($instructor->phone) }}
+                            </a>
+                        </li>
+                        @endif
+
+                        @if($instructor->address)
                         <li>
                             <a href="javascript:;">
                                 <span class="icon">
-                                    <svg width="17" height="21" viewBox="0 0 17 21" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.66602 0.835938C6.5443 0.835938 4.50947 1.67879 3.00919 3.17908C1.50891 4.67937 0.666059 6.71419 0.666059 8.83592C0.659475 10.8268 1.40197 12.7473 2.74605 14.2159L8.28602 20.6609C8.33296 20.7158 8.39123 20.7599 8.45683 20.7901C8.52243 20.8203 8.59379 20.8359 8.66602 20.8359C8.73824 20.8359 8.8096 20.8203 8.8752 20.7901C8.9408 20.7599 8.99907 20.7158 9.04601 20.6609L14.586 14.2159C15.9301 12.7473 16.6726 10.8268 16.666 8.83592C16.666 6.71419 15.8231 4.67937 14.3228 3.17908C12.8226 1.67879 10.7877 0.835938 8.66602 0.835938ZM13.826 13.5659L8.66602 19.5709L3.50604 13.5709C2.588 12.5694 1.98123 11.3225 1.75972 9.98206C1.53821 8.64166 1.71155 7.26576 2.25859 6.02218C2.80563 4.7786 3.70273 3.72108 4.84047 2.9786C5.97822 2.23612 7.30744 1.84078 8.66602 1.84078C10.0246 1.84078 11.3538 2.23612 12.4916 2.9786C13.6293 3.72108 14.5264 4.7786 15.0734 6.02218C15.6205 7.26576 15.7938 8.64166 15.5723 9.98206C15.3508 11.3225 14.744 12.5694 13.826 13.5709V13.5659Z"
-                                            fill="#6440FB" />
-                                        <path
-                                            d="M8.66601 5.33593C7.97378 5.33593 7.2971 5.5412 6.72153 5.92578C6.14596 6.31037 5.69736 6.85699 5.43245 7.49653C5.16755 8.13607 5.09824 8.8398 5.23328 9.51874C5.36833 10.1977 5.70167 10.8213 6.19115 11.3108C6.68064 11.8003 7.30427 12.1336 7.9832 12.2687C8.66213 12.4037 9.36586 12.3344 10.0054 12.0695C10.6449 11.8046 11.1916 11.356 11.5761 10.7804C11.9607 10.2048 12.166 9.52816 12.166 8.83592C12.166 7.90767 11.7972 7.01743 11.1409 6.36105C10.4845 5.70468 9.59427 5.33593 8.66601 5.33593ZM8.66601 11.3359C8.17156 11.3359 7.68822 11.1893 7.2771 10.9146C6.86598 10.6399 6.54555 10.2494 6.35633 9.79263C6.16711 9.33582 6.1176 8.83315 6.21406 8.3482C6.31053 7.86325 6.54863 7.41779 6.89826 7.06816C7.24789 6.71853 7.69334 6.48043 8.17829 6.38396C8.66324 6.2875 9.1659 6.33701 9.62272 6.52623C10.0795 6.71545 10.47 7.03588 10.7447 7.447C11.0194 7.85812 11.166 8.34147 11.166 8.83592C11.166 9.49896 10.9026 10.1348 10.4338 10.6037C9.96493 11.0725 9.32905 11.3359 8.66601 11.3359Z"
-                                            fill="#6440FB" />
-                                    </svg>
+                                    <i class="fa-solid fa-location-dot" style="color: #6440FB;"></i>
                                 </span>
                                 {{ html_decode($instructor->address) }}
                             </a>
                         </li>
+                        @endif
 
                         <li>
                             <a href="javascript:;">
@@ -80,86 +76,132 @@
                         </li>
 
                     </ul>
-                    <div class="instructors_details_btn">
-                        <button type="button" class="td_btn td_style_1 td_radius_30 td_medium td_with_shadow"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <span class="td_btn_in td_white_color td_accent_bg">
-                                <span>{{ __('translate.Contact With Me') }}</span>
-                                <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15.1575 4.34302L3.84375 15.6567" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path
-                                        d="M15.157 11.4142C15.157 11.4142 16.0887 5.2748 15.157 4.34311C14.2253 3.41142 8.08594 4.34314 8.08594 4.34314"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                            </span>
-                        </button>
+                        <div class="instructors_details_btn">
+                            <button type="button" class="td_btn td_style_1 td_radius_30 td_medium td_with_shadow"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <span class="td_btn_in td_white_color td_accent_bg">
+                                    <span>{{ __('translate.Contact With Me') }}</span>
+                                    <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.1575 4.34302L3.84375 15.6567" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path
+                                            d="M15.157 11.4142C15.157 11.4142 16.0887 5.2748 15.157 4.34311C14.2253 3.41142 8.08594 4.34314 8.08594 4.34314"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-xl-8 col-lg-7">
                     <div class="instructors_details_main">
-                        <div class="instructors_details_text">
-                            <h2>{{ html_decode($instructor->name) }}</h2>
-                            <p>
-                                {{ html_decode($instructor->designation) }}
-                            </p>
-                        </div>
-                        <div class="instructors_details_main_decs">
-                            <p>
-                                {{ html_decode($instructor->about_me) }}
-                            </p>
-                        </div>
-                        <div class="instructors_details_text two">
-                            <h2>{{ __('translate.My Expertise & Skills') }}</h2>
+                        <div class="td_white_bg td_radius_10 p-4 shadow-sm mb-4">
+                            <div class="instructors_details_text mb-3">
+                                <h2 class="td_fs_32 td_semibold mb-1">{{ html_decode($instructor->name) }}</h2>
+                                <p class="td_opacity_7 mb-1">
+                                    {{ html_decode($instructor->designation) }}
+                                </p>
+                                @if($instructor->instructor_experience)
+                                <p class="td_opacity_7 mb-0">
+                                    Years of Experience :  {{ html_decode($instructor->instructor_experience) }}
+                                </p>
+                                @endif
+                            </div>
+                            <div class="instructors_details_main_decs">
+                                <p class="mb-0">
+                                    {{ html_decode($instructor->about_me) }}
+                                </p>
+                            </div>
                         </div>
 
-
-
-                        <div class="instructors_details_skil">
-                            @foreach ($skills_expertises ?? [] as $index => $skills_expertise)
-                                <div class="instructors_details_skil_item">
-                                    <div class="instructors_details_skil_text">
-                                        <h4>{{ html_decode($skills_expertise->skill) }}</h4>
+                        <div class="td_white_bg td_radius_10 p-4 shadow-sm mb-4">
+                            <div class="instructors_details_text two mb-3">
+                                <h2 class="td_fs_24 td_semibold mb-0">{{ __('translate.Educational Information') }}</h2>
+                            </div>
+                            <div class="instructors_details_main_decs">
+                                <div class="row g-3">
+                                    @if($instructor->education_qualification)
+                                    <div class="col-md-6">
+                                        <div class="border rounded-3 p-3 h-100">
+                                            <div class="td_fs_14 td_opacity_7 mb-1">{{ __('translate.Education Qualification') }}</div>
+                                            <div class="td_fs_18 td_heading_color text-capitalize">{{ html_decode($instructor->education_qualification) }}</div>
+                                        </div>
                                     </div>
-                                    <div class="instructors_details_skil_bar">
-                                        <span class="instructors_details_skil_bar_bg" style="width: {{ html_decode($skills_expertise->expertise) }}%"></span>
-                                        <span class="instructors_details_skil_bar_over" style="left: {{ (html_decode($skills_expertise->expertise) -3)  }}%">
-                                            {{ html_decode($skills_expertise->expertise) }}%
-                                        </span>
-
+                                    @endif
+                                    @if($instructor->school_name)
+                                    <div class="col-md-6">
+                                        <div class="border rounded-3 p-3 h-100">
+                                            <div class="td_fs_14 td_opacity_7 mb-1">{{ __('translate.School Name') }}</div>
+                                            <div class="td_fs_18 td_heading_color text-capitalize">{{ html_decode($instructor->school_name) }}</div>
+                                        </div>
                                     </div>
+                                    @endif
+                                    @if($instructor->college_name)
+                                    <div class="col-md-6">
+                                        <div class="border rounded-3 p-3 h-100">
+                                            <div class="td_fs_14 td_opacity_7 mb-1">{{ __('translate.College Name') }}</div>
+                                            <div class="td_fs_18 td_heading_color text-capitalize">{{ html_decode($instructor->college_name) }}</div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @if($instructor->current_university_semester)
+                                    <div class="col-md-6">
+                                        <div class="border rounded-3 p-3 h-100">
+                                            <div class="td_fs_14 td_opacity_7 mb-1">{{ __('translate.Current University/Semester') }}</div>
+                                            <div class="td_fs_18 td_heading_color text-capitalize">{{ html_decode($instructor->current_university_semester) }}</div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @if($instructor->o_level_results)
+                                    <div class="col-md-6">
+                                        <div class="border rounded-3 p-3 h-100">
+                                            <div class="td_fs_14 td_opacity_7 mb-1">{{ __('translate.O-level Results') }}</div>
+                                            <div class="td_fs_18 td_heading_color">{{ html_decode($instructor->o_level_results) }}</div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @if($instructor->a_level_results)
+                                    <div class="col-md-6">
+                                        <div class="border rounded-3 p-3 h-100">
+                                            <div class="td_fs_14 td_opacity_7 mb-1">{{ __('translate.A-level Results') }}</div>
+                                            <div class="td_fs_18 td_heading_color">{{ html_decode($instructor->a_level_results) }}</div>
+                                        </div>
+                                    </div>
+                                    @endif
                                 </div>
-                            @endforeach
+                            </div>
                         </div>
 
-                        <ul class="share_list">
-                            <li>
-                                {{ __('translate.Social') }}:
-                            </li>
-                            <li>
-                                <a href="{{ html_decode($instructor->facebook) }}" target="_blank">
-                                    <i class="fa-brands fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ html_decode($instructor->twitter) }}" target="_blank">
-                                    <i class="fa-brands fa-x-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ html_decode($instructor->instagram) }}" target="_blank">
-                                    <i class="fa-brands fa-instagram"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ html_decode($instructor->linkedin) }}" target="_blank">
-                                    <i class="fa-brands fa-linkedin"></i>
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="td_white_bg td_radius_10 p-4 shadow-sm">
+                            <div class="instructors_details_text two mb-3">
+                                <h2 class="td_fs_24 td_semibold mb-0">{{ __('translate.Social') }}</h2>
+                            </div>
+                            <ul class="share_list mb-0">
+                                <li>
+                                    <a href="{{ html_decode($instructor->facebook) }}" target="_blank">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ html_decode($instructor->twitter) }}" target="_blank">
+                                        <i class="fa-brands fa-x-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ html_decode($instructor->instagram) }}" target="_blank">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ html_decode($instructor->linkedin) }}" target="_blank">
+                                        <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
                     </div>
 
@@ -479,4 +521,4 @@
     });
 
     </script>
-@endpush
+@endpush 

@@ -8,6 +8,9 @@
             "total_student": "text",
             "total_student_title": "text",
             "images": {
+                "banner_image": {
+                        "size": "1920x600"
+                },
                 "left_side_image_one": {
                         "size": "350x350"
                 },

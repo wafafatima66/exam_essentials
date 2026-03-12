@@ -28,47 +28,7 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-
-        $theme_setting = GlobalSetting::where('key', 'selected_theme')->first();
-
-        if($theme_setting->value == 'all_theme'){
-            if($request->has('theme')){
-                $theme = $request->theme;
-                if($theme == 'one'){
-                    Session::put('selected_theme', 'theme_one');
-                }elseif($theme == 'two'){
-                    Session::put('selected_theme', 'theme_two');
-                }elseif($theme == 'three'){
-                    Session::put('selected_theme', 'theme_three');
-                }elseif($theme == 'four'){
-                    Session::put('selected_theme', 'theme_four');
-                }elseif($theme == 'five'){
-                    Session::put('selected_theme', 'theme_five');
-                }elseif($theme == 'six'){
-                    Session::put('selected_theme', 'theme_six');
-                }else{
-                    if(!Session::has('selected_theme')){
-                        Session::put('selected_theme', 'theme_one');
-                    }
-                }
-            }else{
-                Session::put('selected_theme', 'theme_one');
-            }
-        }else{
-            if($theme_setting->value == 'theme_one'){
-                Session::put('selected_theme', 'theme_one');
-            }elseif($theme_setting->value == 'theme_two'){
-                Session::put('selected_theme', 'theme_two');
-            }elseif($theme_setting->value == 'theme_three'){
-                Session::put('selected_theme', 'theme_three');
-            }elseif($theme_setting->value == 'theme_four'){
-                Session::put('selected_theme', 'theme_four');
-            }elseif($theme_setting->value == 'theme_five'){
-                Session::put('selected_theme', 'theme_five');
-            }elseif($theme_setting->value == 'theme_six'){
-                Session::put('selected_theme', 'theme_six');
-            }
-        }
+        Session::put('selected_theme', 'theme_one');
 
 
         $seo_setting = SeoSetting::where('id', 1)->first();
@@ -78,8 +38,6 @@ class HomeController extends Controller
         $home1_about_us = getContent('home1_about_us.content', true);
         $home1_join_instructor = getContent('home1_join_instructor.content', true);
         $home1_why_choose_us = getContent('home1_why_choose_us.content', true);
-
-        $categories = Category::where('status', 'enable')->latest()->get();
 
         $categories = Category::with('courses')->where('status', 'enable')->latest()->get();
 
@@ -95,177 +53,20 @@ class HomeController extends Controller
 
         $blogs = Blog::with('author', 'category')->where('status', 1)->take(4)->get();
 
-        // home 2 content start
-        $home2_hero_section = getContent('home2_hero.content', true);
-        $home2_about_us = getContent('home2_about_us.content', true);
-        $home2_achievement = getContent('home2_achievement.content', true);
-        $home2_our_facilities = getContent('home2_our_facilities.content', true);
-        $home2_fun_fact = getContent('home2_fun_fact.content', true);
-        $home2_featured_instructor = getContent('home2_featured_instructor.content', true);
-        $home2_join_instructor = getContent('home2_join_instructor.content', true);
-        $home2_mobile_app = getContent('home2_mobile_app.content', true);
-
-        $home_2_filter_categories = Category::with(['courses' => function($query) {
-            $query->take(40);
-        }])->take(5)->get();
-
-
-        // home 3 content start
-        $home3_hero_section = getContent('home3_hero.content', true);
-        $home3_about_us = getContent('home3_about.content', true);
-        $courses = Course::with('instructor')->where(['status' => 'enable', 'approved_by_admin' => 'approved' ])->take(3)->get();
-        $home3_fun_fact = getContent('home3_fun_fact.content', true);
-        $home3_faq = getContent('home3_faq.content', true);
-        $faqs_one = Faq::where('faq_type', 'section_one')->latest()->get();
-        $home3_testimonial = getContent('home3_testimonial.content', true);
-        $home3_explore = getContent('home3_explore.content', true);
-        $home3_newsletter = getContent('home3_newsletter.content', true);
-
-
-        // home 4 content start
-        $home4_hero_section = getContent('home4_hero.content', true);
-        $about_us = getContent('about_us.content', true);
-        $our_campus = getContent('our_campus.content', true);
-        $our_program = getContent('our_program.content', true);
-        $popular_department = getContent('home4_popular_department.content', true);
-        $about_video = getContent('about_video.content', true);
-        $home4_testimonial = getContent('home4_testimonial.content', true);
-
-        $home_4_filter_categories = Category::with(['courses' => function($query) {
-            $query->take(40);
-        }])->take(4)->get();
-
-
-        // home 5 content start
-        $home5_hero_section = getContent('home5_hero_section.content', true);
-        $home5_key_feature = getContent('home5_key_feature.content', true);
-        $home5_about_us = getContent('home5_about_us.content', true);
-        $home5_filter_categories = Category::with(['courses' => function($query) {
-            $query->take(40);
-        }])->take(4)->get();
-        $home5_why_choose_us = getContent('home5_why_choose_us.content', true);
-        $home5_course_design_offer = getContent('home5_course_design_offer.content', true);
-        $home5_testimonials = getContent('home5_testimonials.content', true);
-// return $home5_course_design_offer;
-        // home 6 content start
-        $home6_hero_section = getContent('home6_hero_section.content', true);
-        $home6_courses = Course::with('instructor')->where(['status' => 'enable', 'approved_by_admin' => 'approved' ])->take(8)->get();
-        $home6_about_us = getContent('home6_about_us.content', true);
-        $home6_testimonials = getContent('home6_testimonials.content', true);
-
-
-        $selected_theme = Session::get('selected_theme');
-
-        if ($selected_theme == 'theme_one'){
-            return view('index', [
-                'seo_setting' => $seo_setting,
-                'home1_hero_section' => $home1_hero_section,
-                'categories' => $categories,
-                'home1_key_feature' => $home1_key_feature,
-                'home1_about_us' => $home1_about_us,
-                'home_1_filter_categories' => $home_1_filter_categories,
-                'home1_join_instructor' => $home1_join_instructor,
-                'partners' => $partners,
-                'testimonials' => $testimonials,
-                'instructors' => $instructors,
-                'home1_why_choose_us' => $home1_why_choose_us,
-                'blogs' => $blogs,
-
-            ]);
-        }elseif($selected_theme == 'theme_two'){
-            return view('index2', [
-                'seo_setting' => $seo_setting,
-                'home2_hero_section' => $home2_hero_section,
-                'home2_key_feature' => $home1_key_feature,
-                'home2_about_us' => $home2_about_us,
-                'categories' => $categories,
-                'home_2_filter_categories' => $home_2_filter_categories,
-                'home2_achievement' => $home2_achievement,
-                'testimonials' => $testimonials,
-                'home2_our_facilities' => $home2_our_facilities,
-                'home2_fun_fact' => $home2_fun_fact,
-                'instructors' => $instructors,
-                'home2_featured_instructor' => $home2_featured_instructor,
-                'home2_join_instructor' => $home2_join_instructor,
-                'home2_mobile_app' => $home2_mobile_app,
-                'blogs' => $blogs,
-            ]);
-        }elseif($selected_theme == 'theme_three'){
-            return view('index3', [
-                'seo_setting' => $seo_setting,
-                'home3_hero_section' => $home3_hero_section,
-                'home3_about_us' => $home3_about_us,
-                'courses' => $courses,
-                'home3_fun_fact' => $home3_fun_fact,
-                'home3_faq' => $home3_faq,
-                'faqs_one' => $faqs_one,
-                'testimonials' => $testimonials,
-                'home3_testimonial' => $home3_testimonial,
-                'instructors' => $instructors,
-                'home3_explore' => $home3_explore,
-                'home3_newsletter' => $home3_newsletter,
-                'blogs' => $blogs,
-            ]);
-        }elseif($selected_theme == 'theme_four'){
-            return view('index4', [
-                'seo_setting' => $seo_setting,
-                'home4_hero_section' => $home4_hero_section,
-                'about_us' => $about_us,
-                'home_4_filter_categories' => $home_4_filter_categories,
-                'our_campus' => $our_campus,
-                'our_program' => $our_program,
-                'popular_department' => $popular_department,
-                'about_video' => $about_video,
-                'instructors' => $instructors,
-                'home4_testimonial' => $home4_testimonial,
-                'testimonials' => $testimonials,
-                'blogs' => $blogs,
-            ]);
-        }elseif($selected_theme == 'theme_five'){
-            return view('index5', [
-                'seo_setting' => $seo_setting,
-                'home5_hero_section' => $home5_hero_section,
-                'home5_key_feature' => $home5_key_feature,
-                'home5_about_us' => $home5_about_us,
-                'home5_filter_categories' => $home5_filter_categories,
-                'home5_why_choose_us' => $home5_why_choose_us,
-                'home5_course_design_offer' => $home5_course_design_offer,
-                'instructors' => $instructors,
-                'testimonials' => $testimonials,
-                'home5_testimonials' => $home5_testimonials,
-                'blogs' => $blogs,
-                'partners' => $partners,
-            ]);
-        }elseif($selected_theme == 'theme_six'){
-            return view('index6', [
-                'seo_setting' => $seo_setting,
-                'home6_hero_section' => $home6_hero_section,
-                'home6_courses' => $home6_courses,
-                'home6_about_us' => $home6_about_us,
-                'categories' => $categories,
-                'instructors' => $instructors,
-                'testimonials' => $testimonials,
-                'home6_testimonials' => $home6_testimonials,
-                'blogs' => $blogs,
-                'partners' => $partners,
-            ]);
-        }else{
-            return view('index', [
-                'seo_setting' => $seo_setting,
-                'home1_hero_section' => $home1_hero_section,
-                'categories' => $categories,
-                'home1_key_feature' => $home1_key_feature,
-                'home1_about_us' => $home1_about_us,
-                'home_1_filter_categories' => $home_1_filter_categories,
-                'home1_join_instructor' => $home1_join_instructor,
-                'partners' => $partners,
-                'testimonials' => $testimonials,
-                'instructors' => $instructors,
-                'home1_why_choose_us' => $home1_why_choose_us,
-                'blogs' => $blogs,
-
-            ]);
-        }
+        return view('index', [
+            'seo_setting' => $seo_setting,
+            'home1_hero_section' => $home1_hero_section,
+            'categories' => $categories,
+            'home1_key_feature' => $home1_key_feature,
+            'home1_about_us' => $home1_about_us,
+            'home_1_filter_categories' => $home_1_filter_categories,
+            'home1_join_instructor' => $home1_join_instructor,
+            'partners' => $partners,
+            'testimonials' => $testimonials,
+            'instructors' => $instructors,
+            'home1_why_choose_us' => $home1_why_choose_us,
+            'blogs' => $blogs,
+        ]);
 
     }
 

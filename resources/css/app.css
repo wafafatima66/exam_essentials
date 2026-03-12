@@ -1,0 +1,39 @@
+/* Homepage Banner Styles
+.td_hero {
+  position: relative;
+  min-height: 100vh;
+  height: auto;
+  overflow: hidden;
+  margin-top: 80px;
+  width: 100%;
+}
+
+
+.td_image_box_img_1 {
+  padding: 10px;
+  background: #ffffff;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  display: inline-block;
+}
+.td_image_box_img_1 img {
+  width: 100%;
+  height: auto;
+  display: block;
+
+}
+
+@media (max-width: 768px) {
+  .td_hero {
+    min-height: 60vh !important;
+    margin-top: 50px !important;
+  }
+}
+@media (max-width: 480px) {
+  .td_hero {
+    min-height: auto !important;
+    height: 350px !important;
+    margin-top: 50px !important;
+  }
+}
+    */
